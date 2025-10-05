@@ -7,8 +7,10 @@
       --text-secondary: #94a3b8;
       --accent-cyan: #06b6d4;
       --accent-purple: #a855f7;
+      --accent-green: #4fd154;
       --accent-cyan-text: #91ddea;
       --accent-purple-text: #cda5f3;
+      --accent-green-text: #b9f3a5;
       --success: #10b981;
       --warning: #f59e0b;
       --danger: #ef4444;
@@ -164,12 +166,14 @@
     }
 
     .section-content {
-      overflow: hidden;
+      overflow: visible;
       transition: max-height 0.3s ease-out;
+      max-height: none;
     }
 
     .section-content.collapsed {
       max-height: 0 !important;
+      overflow: hidden;
     }
 
     .card {
@@ -193,6 +197,14 @@
       margin-top: 1.5rem;
       margin-bottom: 1rem;
       color: var(--accent-purple);
+    }
+
+    .card h5 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-green);
     }
 
     /* Modification Grid */

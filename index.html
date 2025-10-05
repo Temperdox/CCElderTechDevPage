@@ -3910,6 +3910,9 @@ creativeItemStatReduction = 0.5</code></pre>
     if (content.classList.contains('collapsed')) {
       content.classList.remove('collapsed');
       content.style.maxHeight = content.scrollHeight + 'px';
+      setTimeout(() => {
+        content.style.maxHeight = 'none';
+      }, 300);
     } else {
       content.style.maxHeight = content.scrollHeight + 'px';
       setTimeout(() => {
@@ -3927,7 +3930,7 @@ creativeItemStatReduction = 0.5</code></pre>
   // Initialize sections
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.section-content').forEach(content => {
-      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.maxHeight = 'none';
     });
 
     // Scroll spy
