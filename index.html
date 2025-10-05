@@ -109,6 +109,7 @@
                 <th>Module Slots</th>
                 <th>Cartridge Slots</th>
                 <th>FE Capacity</th>
+                <th>FE Drain Exponent</th>
               </tr>
             </thead>
             <tbody>
@@ -118,6 +119,7 @@
                 <td>4</td>
                 <td>3</td>
                 <td>10k FE</td>
+                <td>1.15 (fast drain)</td>
               </tr>
               <tr>
                 <td><span class="badge badge-rare">Advanced</span></td>
@@ -125,6 +127,7 @@
                 <td>8</td>
                 <td>6</td>
                 <td>50k FE</td>
+                <td>1.10 (moderate)</td>
               </tr>
               <tr>
                 <td><span class="badge badge-epic">Elite</span></td>
@@ -132,6 +135,7 @@
                 <td>12</td>
                 <td>9</td>
                 <td>250k FE</td>
+                <td>1.05 (slow)</td>
               </tr>
               <tr>
                 <td><span class="badge badge-legendary">Master</span></td>
@@ -139,6 +143,7 @@
                 <td>16</td>
                 <td>12</td>
                 <td>1M FE</td>
+                <td>1.02 (very slow)</td>
               </tr>
               <tr>
                 <td><span class="badge badge-artifact">Legendary</span></td>
@@ -146,6 +151,7 @@
                 <td>20</td>
                 <td>15</td>
                 <td>10M FE</td>
+                <td>1.01 (minimal)</td>
               </tr>
             </tbody>
           </table>
@@ -557,17 +563,43 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
         <p class="text-muted"><small>Additional reference: Parnas, D.L. "On the Criteria To Be Used in Decomposing Systems into Modules." Communications of the ACM, 1972. Modules are designed as interchangeable, composable units - not permanent installations.</small></p>
 
         <h3>Q: How do you limit abuse and prevent infinite loops?</h3>
-        <p><strong>A:</strong> The system uses <strong>natural FE-based limitations</strong> that make abuse impossible without destroying balance:</p>
+        <p><strong>A:</strong> The system uses <strong>exponential FE drain</strong> that naturally allows circuits to run but prevents infinite loops:</p>
 
-        <h4>1. Per-Tick FE Drain (5%)</h4>
-        <p>While your circuit code executes, it drains <strong>5% of your max FE capacity per tick</strong>. This means:</p>
+        <h4>1. Exponential Per-Tick FE Drain</h4>
+        <p>Circuit execution drains FE exponentially over time using the formula:</p>
+        <pre><code class="light">FE_Drain = Base_Drain% * (Exponent ^ Ticks_Running)</code></pre>
+
+        <p><strong>How it works:</strong></p>
         <ul>
-          <li>A 100,000 FE device drains 5,000 FE/tick while code runs</li>
-          <li>Infinite loops run out of FE in ~20 ticks (1 second)</li>
-          <li>Long-running circuits need massive FE capacity or finish quickly</li>
+          <li><strong>Early execution:</strong> Low drain (0.5% → 0.55% → 0.61%) - gives circuits time to complete</li>
+          <li><strong>Prolonged execution:</strong> Drain increases exponentially - stops runaway code</li>
+          <li><strong>Device tier matters:</strong> Higher tier devices have lower exponents (can run longer)</li>
         </ul>
 
-        <h4>2. Module Method Costs (One-Time Per Call)</h4>
+        <p><strong>Device Tier Exponents:</strong></p>
+        <ul>
+          <li><span class="badge bg-secondary">Basic Device</span>: Base 0.5%, Exponent 1.15 (grows fast)</li>
+          <li><span class="badge badge-rare">Advanced Device</span>: Base 0.5%, Exponent 1.10 (moderate growth)</li>
+          <li><span class="badge badge-epic">Elite Device</span>: Base 0.5%, Exponent 1.05 (slow growth)</li>
+          <li><span class="badge badge-legendary">Master Device</span>: Base 0.5%, Exponent 1.02 (very slow growth)</li>
+        </ul>
+
+        <div class="alert alert-info">
+          <i class="fas fa-lightbulb"></i>
+          <div>
+            <strong>Example:</strong> A Basic Device at tick 20 drains: 0.5% * (1.15^20) = ~8% per tick. At tick 40: ~81% per tick. Circuits must complete before drain becomes unsustainable.
+          </div>
+        </div>
+
+        <h4>2. Exponent Clipper Modules</h4>
+        <p>Special modules can <strong>lock drain to a flat rate</strong>, preventing exponential growth:</p>
+        <ul>
+          <li><span class="badge badge-epic">Sustain Module (Epic)</span>: Clips drain to 0.5% (no exponent)</li>
+          <li><span class="badge badge-legendary">Eternity Module (Legendary)</span>: Clips drain to 0.1% (ultra-long circuits)</li>
+        </ul>
+        <p>Use these for complex circuits that need guaranteed completion time without worrying about exponential drain.</p>
+
+        <h4>3. Module Method Costs (One-Time Per Call)</h4>
         <p>Every time you call a module method, it costs FE based on rarity:</p>
         <ul>
           <li><span class="badge badge-rare">Rare</span>: 10,000 FE per call</li>
@@ -576,19 +608,23 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
           <li><span class="badge badge-artifact">Artifact</span>: 10,000,000 FE per call</li>
         </ul>
 
-        <h4>3. Natural Infinite Loop Prevention</h4>
+        <h4>4. Natural Infinite Loop Prevention</h4>
         <pre><code class="language-lua">-- This loop will run out of FE automatically
+local tick = 0
 while true do
+  tick = tick + 1
   explode(10)  -- Legendary: 1M FE per call
-  -- After ~10 iterations, device has no FE → code stops
+  -- Tick 1: 0.5% drain
+  -- Tick 20: ~8% drain (on Basic Device)
+  -- Tick 40: ~81% drain → out of FE, code stops
 end</code></pre>
 
-        <p><strong>Result:</strong> Players can write any code they want, but physics (FE limits) naturally prevents abuse. Want to spam explosions? You need massive FE infrastructure. It's self-balancing.</p>
+        <p><strong>Result:</strong> Short, efficient circuits run fine. Long circuits drain exponentially. Infinite loops self-terminate. Players balance complexity vs FE capacity.</p>
 
         <div class="alert alert-success">
           <i class="fas fa-check-circle"></i>
           <div>
-            <strong>Design Philosophy:</strong> Instead of artificial code restrictions, we use resource costs. Write the code you want, but be prepared to power it. This rewards infrastructure building and strategic resource management.
+            <strong>Design Philosophy:</strong> Exponential drain gives circuits breathing room to complete their task, but naturally punishes inefficient or infinite code. Higher tier devices can handle more complex logic. Clipper modules allow specialized long-running circuits when needed.
           </div>
         </div>
       </div>
@@ -714,7 +750,9 @@ end</code></pre>
           <li><strong>Circuit Type:</strong> Category of circuit: Projectile, Instant, Raycast, Area, Summon. Determines behavior.</li>
           <li><strong>Unrestricted Lua:</strong> Write any Lua code you want. No restrictions on values, loops, or logic.</li>
           <li><strong>Module Methods:</strong> Action functions provided by installed modules. Example: burn(), explode(), teleport(), heal()</li>
-          <li><strong>FE Per Tick Cost:</strong> 5% of max FE drained per tick while circuit code executes</li>
+          <li><strong>Exponential FE Drain:</strong> FE drain that increases exponentially each tick: 0.5% * (Exponent ^ Ticks). Higher tier devices have lower exponents</li>
+          <li><strong>FE Drain Exponent:</strong> Device-specific value determining drain growth rate. Basic: 1.15, Advanced: 1.10, Elite: 1.05, Master: 1.02, Legendary: 1.01</li>
+          <li><strong>Exponent Clipper Module:</strong> Special module that locks drain to flat rate (0.5% or 0.1%), preventing exponential growth</li>
           <li><strong>FE Per Call Cost:</strong> One-time FE cost when module method is called. Rare: 10k, Epic: 100k, Legendary: 1M, Artifact: 10M</li>
           <li><strong>Compile:</strong> Process of transferring modules to cartridge and saving circuit script.</li>
           <li><strong>Keybind:</strong> Keyboard shortcut assigned to cartridge slot. Allows instant circuit casting without opening tablet.</li>
@@ -1548,6 +1586,24 @@ power.clearAlerts() --> boolean</code></pre>
               </ul>
             </div>
           </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="card bg-dark border-epic" style="border: 2px solid #8b5cf6;">
+              <h4><i class="fas fa-infinity"></i> Exponent Clipper Modules (Epic/Legendary)</h4>
+              <p><strong>Purpose:</strong> Lock FE drain to flat rate, removing exponential growth</p>
+              <p><strong>FE Cost:</strong> No method calls (passive effect)</p>
+              <p><strong>Modules:</strong></p>
+              <ul>
+                <li><span class="badge badge-epic">Sustain Module (Epic)</span>: Clips drain to 0.5% per tick (constant)</li>
+                <li><span class="badge badge-legendary">Eternity Module (Legendary)</span>: Clips drain to 0.1% per tick (ultra-long circuits)</li>
+              </ul>
+              <p><strong>Use Case:</strong> Complex circuits that need guaranteed execution time without exponential FE drain. Essential for long-running autonomous scripts or multi-step spell sequences.</p>
+              <div class="alert alert-info mt-2 mb-0">
+                <i class="fas fa-lightbulb"></i>
+                <small><strong>Example:</strong> A 100-step spell sequence would normally drain exponentially. With Sustain Module, it drains 0.5% every tick regardless of duration.</small>
+              </div>
+            </div>
+          </div>
         </div>
 
         <h3>Unrestricted Lua Programming</h3>
@@ -2224,38 +2280,74 @@ print("Charges remaining: " .. charges)</code></pre>
         <div class="alert alert-info">
           <i class="fas fa-bolt"></i>
           <div>
-            <strong>New FE System:</strong> Circuits drain FE in two ways: constant per-tick drain + one-time costs when module methods are called.
+            <strong>Exponential FE System:</strong> Circuits drain FE exponentially over time + one-time costs when module methods are called. Higher tier devices can run longer before drain becomes unsustainable.
           </div>
         </div>
 
-        <h4>Per-Tick Execution Cost</h4>
+        <h4>Exponential Per-Tick Execution Cost</h4>
+        <p><strong>Formula:</strong> <code>FE_Drain = 0.5% * (Exponent ^ Ticks_Running)</code></p>
         <div class="table-responsive">
           <table class="table">
             <thead>
             <tr>
-              <th>Cost Type</th>
-              <th>FE Drain</th>
-              <th>Purpose</th>
+              <th>Device Tier</th>
+              <th>Base Drain</th>
+              <th>Exponent</th>
+              <th>Tick 1</th>
+              <th>Tick 20</th>
+              <th>Tick 40</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td><strong>Per Tick</strong></td>
-              <td>5% of max FE capacity</td>
-              <td>Constant drain while circuit executes</td>
+              <td><span class="badge bg-secondary">Basic</span></td>
+              <td>0.5%</td>
+              <td>1.15</td>
+              <td>0.5%</td>
+              <td>~8%</td>
+              <td>~81%</td>
             </tr>
             <tr>
-              <td>Example (1M FE capacity)</td>
-              <td>50,000 FE per tick</td>
-              <td>20 ticks max execution time</td>
+              <td><span class="badge badge-rare">Advanced</span></td>
+              <td>0.5%</td>
+              <td>1.10</td>
+              <td>0.5%</td>
+              <td>~3.4%</td>
+              <td>~23%</td>
             </tr>
             <tr>
-              <td>Example (10M FE capacity)</td>
-              <td>500,000 FE per tick</td>
-              <td>20 ticks max execution time</td>
+              <td><span class="badge badge-epic">Elite</span></td>
+              <td>0.5%</td>
+              <td>1.05</td>
+              <td>0.5%</td>
+              <td>~1.3%</td>
+              <td>~3.5%</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-legendary">Master</span></td>
+              <td>0.5%</td>
+              <td>1.02</td>
+              <td>0.5%</td>
+              <td>~0.74%</td>
+              <td>~1.1%</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-artifact">Legendary</span></td>
+              <td>0.5%</td>
+              <td>1.01</td>
+              <td>0.5%</td>
+              <td>~0.60%</td>
+              <td>~0.72%</td>
             </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="alert alert-warning">
+          <i class="fas fa-clock"></i>
+          <div>
+            <strong>Execution Time:</strong> Short circuits (1-10 ticks) have minimal drain. Long circuits drain exponentially. Higher tier devices allow more complex logic before drain becomes prohibitive.
+          </div>
         </div>
 
         <h4>Module Method Call Costs</h4>
