@@ -26,6 +26,7 @@
 
   <ul class="toc" id="toc">
     <li><a href="#overview"><i class="fas fa-book"></i> Overview</a></li>
+    <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
     <li><a href="#relics-artifacts"><i class="fas fa-star"></i> Relics & Artifacts</a></li>
     <li><a href="#terminology"><i class="fas fa-list"></i> Terminology</a></li>
     <li><a href="#core-systems"><i class="fas fa-cogs"></i> Core Systems</a></li>
@@ -80,10 +81,10 @@
         <ul>
           <li><strong>Only Pocket Computers & Turtles:</strong> No weapons, tools, or armor. Pure computational enhancement.</li>
           <li><strong>Workbench Central:</strong> Craft modules, upgrade devices (Basic → Legendary tiers), create logic cartridges.</li>
-          <li><strong>Module System:</strong> Craft modules (math, control flow) at workbench. Install into devices. Modules consumed on circuit compile.</li>
+          <li><strong>Module System:</strong> Craft action modules (burn, explode, teleport, etc.) at workbench. Install into devices. Write unrestricted Lua code.</li>
           <li><strong>Cartridge-Based Storage:</strong> Logic Cartridges = digital storage medium (like Game Boy cartridges). Store compiled Circuits.</li>
-          <li><strong>Constrained Programming:</strong> Write Lua code using mod-provided methods only. No hard-coded values. Backend tokenizes and validates.</li>
-          <li><strong>Module Consumption:</strong> Compiling a Circuit transfers modules from device to cartridge (NBT transfer). Prevents infinite reuse.</li>
+          <li><strong>Unrestricted Programming:</strong> Write any Lua code you want. Modules provide action methods. Call module methods to execute effects.</li>
+          <li><strong>FE Cost System:</strong> 5% FE drain per tick while code executes + one-time FE cost per module method call (scales with rarity).</li>
           <li><strong>Backup & Share:</strong> Export Circuits to .lua files. Decompile cartridges to recover modules (destroys cartridge).</li>
         </ul>
 
@@ -91,11 +92,11 @@
         <ol>
           <li><strong>Craft Workbench:</strong> Central crafting station for all mod operations</li>
           <li><strong>Upgrade Device:</strong> Place pocket computer/turtle + endgame resources in workbench → Creates tiered device (Basic/Advanced/Elite/Master/Legendary)</li>
-          <li><strong>Craft Modules:</strong> Create math modules (add, sqrt, exponent) and control flow modules (branch, loop, goto) at workbench</li>
+          <li><strong>Craft Modules:</strong> Create action modules (burn, explode, teleport, shield, etc.) at workbench</li>
           <li><strong>Install Modules:</strong> Insert modules into upgraded device via workbench</li>
-          <li><strong>Program Circuit:</strong> Shift+Right Click device → Write Lua code using mod methods → Click Cartridge button → Insert empty cartridge</li>
-          <li><strong>Compile:</strong> Run compile → Backend validates code (removes hard-coded values) → Transfers modules to cartridge → Saves Circuit</li>
-          <li><strong>Execute:</strong> Right Click device to run active Circuit from cartridge</li>
+          <li><strong>Program Circuit:</strong> Shift+Right Click device → Write unrestricted Lua code → Call module methods for effects → Click Cartridge button → Insert empty cartridge</li>
+          <li><strong>Compile:</strong> Run compile → Transfers modules to cartridge → Saves Circuit</li>
+          <li><strong>Execute:</strong> Right Click device to run active Circuit from cartridge (5% FE/tick + method call costs)</li>
         </ol>
 
         <h4>Device Tiers</h4>
@@ -107,7 +108,7 @@
                 <th>Resources Required</th>
                 <th>Module Slots</th>
                 <th>Cartridge Slots</th>
-                <th>baseVal() Cap</th>
+                <th>FE Capacity</th>
               </tr>
             </thead>
             <tbody>
@@ -116,35 +117,35 @@
                 <td>Pocket Computer + Iron</td>
                 <td>4</td>
                 <td>3</td>
-                <td>10</td>
+                <td>10k FE</td>
               </tr>
               <tr>
                 <td><span class="badge badge-rare">Advanced</span></td>
                 <td>Basic + Cerulite</td>
                 <td>8</td>
                 <td>6</td>
-                <td>50</td>
+                <td>50k FE</td>
               </tr>
               <tr>
                 <td><span class="badge badge-epic">Elite</span></td>
                 <td>Advanced + Chronite</td>
                 <td>12</td>
                 <td>9</td>
-                <td>100</td>
+                <td>250k FE</td>
               </tr>
               <tr>
                 <td><span class="badge badge-legendary">Master</span></td>
                 <td>Elite + Muon Crystals</td>
                 <td>16</td>
                 <td>12</td>
-                <td>500</td>
+                <td>1M FE</td>
               </tr>
               <tr>
                 <td><span class="badge badge-artifact">Legendary</span></td>
                 <td>Master + Neutrino Cores</td>
                 <td>20</td>
                 <td>15</td>
-                <td>1000</td>
+                <td>10M FE</td>
               </tr>
             </tbody>
           </table>
@@ -152,16 +153,16 @@
 
         <h4>Progression Summary</h4>
         <ol>
-          <li><strong>Early:</strong> Craft workbench, upgrade pocket computer to Basic tier, craft simple modules (add, subtract)</li>
-          <li><strong>Mid:</strong> Gather Cerulite for Advanced tier, unlock exponent/sqrt modules, create complex Circuits</li>
-          <li><strong>Late:</strong> Farm Chronite for Elite tier, unlock control flow (loops, branches), optimize Circuit efficiency</li>
-          <li><strong>Endgame:</strong> Obtain Muon/Neutrino for Legendary tier, master while loops and recursive algorithms</li>
+          <li><strong>Early:</strong> Craft workbench, upgrade pocket computer to Basic tier, craft simple action modules (burn, knockback)</li>
+          <li><strong>Mid:</strong> Gather Cerulite for Advanced tier, unlock Rare modules (explosion, teleport), manage FE costs</li>
+          <li><strong>Late:</strong> Farm Chronite for Elite tier, unlock Epic modules (chain lightning, gravity well), optimize FE efficiency</li>
+          <li><strong>Endgame:</strong> Obtain Muon/Neutrino for Legendary tier, master complex Lua programs with powerful Legendary/Artifact modules</li>
         </ol>
 
         <div class="alert alert-info">
           <i class="fas fa-lightbulb"></i>
           <div>
-            <strong>Key Insight:</strong> This is extremely advanced computational science that feels like magic. No actual spells - just pure programming power constrained by module availability and device tier limits.
+            <strong>Key Insight:</strong> Write any Lua code you want. Modules provide action methods that cost FE when called. Natural FE limitation prevents infinite loops - your code runs out of power before breaking anything.
           </div>
         </div>
 
@@ -177,185 +178,65 @@
           </div>
         </div>
 
-        <h4>Complete Programming Example: Autonomous Turret System</h4>
-        <p>This example shows a turtle-based turret that tracks and engages entities using Advanced Peripherals environment detector OR standalone with mining cartridge.</p>
+        <h4>Complete Programming Example: Combat Spell System</h4>
+        <p>This example shows a pocket tablet with unrestricted Lua code calling module methods for combat effects.</p>
 
-        <pre><code class="language-lua">-- TURTLE TURRET SYSTEM
--- Right-click turtle to open coding interface (standard CC:Tweaked)
--- This is a TURTLE, not a pocket computer!
+        <pre><code class="language-lua">-- COMBAT SPELL CIRCUIT
+-- Shift+Right Click tablet to open coding interface
+-- Modules installed: burn (Epic), explode (Legendary), raycast (Rare)
 
--- Peripheral Setup:
--- Slot 1: Quantum Energy Point (paired to power network)
--- Slot 2: Advanced Peripherals Environment Detector
--- Slot 3: Weapon upgrade (for projectile firing)
--- Slot 4: Wireless Modem (for GPS positioning)
+-- Create a new projectile circuit
+local circuit = Projectile.new("fireball")
 
-print("=== Autonomous Turret System ===")
-print("Initializing peripherals...")
+-- Define spell parameters (UNRESTRICTED Lua code!)
+local baseDamage = 10
+local explosionRadius = 5
+local burnDuration = 10
 
--- Find peripherals
-local detector = peripheral.find("environmentDetector")
-local modem = peripheral.find("modem")
-local energyPoint = peripheral.find("quantum_energy_point")
-
--- Check if Advanced Peripherals is available
-local hasAdvancedPeripherals = (detector ~= nil)
-local hasGPS = (modem ~= nil)
-
-if hasAdvancedPeripherals then
-  print("✓ Advanced Peripherals detected - Using scanEntities()")
-else
-  print("⚠ No Advanced Peripherals - Using fallback circuit mode")
+-- Use normal Lua control flow
+for i = 1, 3 do
+  print("Preparing spell burst " .. i)
 end
 
-if hasGPS then
-  modem.open(gps.CHANNEL_GPS)
-  print("✓ GPS enabled")
-end
+-- Define impact behavior
+circuit:onImpact(function(target)
+  -- Call module methods (each costs FE)
+  burn(target, burnDuration)  -- Epic module: 100k FE one-time cost
+  explode(explosionRadius)     -- Legendary: 1M FE one-time cost
 
--- Get turtle's current position via GPS
-local x, y, z = gps.locate(5)
-if not x then
-  print("✗ GPS failed - cannot determine position")
-  return
-end
-print("✓ Turret position: " .. x .. ", " .. y .. ", " .. z)
-
--- CIRCUIT COMPILATION: Attack cartridge (for firing)
--- Insert empty Logic Cartridge into turtle's cartridge slot
-local attackCircuit = assignCircuit("Turret Attack", this.inv(1))
-
--- Define attack parameters using baseVal()
-local attackDamage = attackCircuit:baseVal()    -- Random 1-1000
-local attackRange = attackCircuit:baseVal()     -- Random 1-1000
-local fireRate = attackCircuit:baseVal()        -- Random 1-1000
-
--- Create attack logic using Branch module
-attackCircuit:addBranch(true, function()
-  -- Fire weapon
-  attackCircuit:turtleAttack()  -- Uses weapon in peripheral slot 3
-  attackCircuit:sleep(fireRate / 100)  -- Convert to seconds
-end, function()
-  -- No target
-  attackCircuit:print("No target in range")
+  -- Use normal Lua
+  if target.health > 50 then
+    dealDamage(target, baseDamage * 2)  -- Double damage if high HP
+  else
+    dealDamage(target, baseDamage)
+  end
 end)
 
--- Compile attack circuit
-local compileSuccess = attackCircuit:compile()
-if not compileSuccess then
-  print("✗ Attack circuit compilation failed")
-  return
-end
-print("✓ Attack circuit compiled")
+-- Compile to cartridge (modules transfer to cartridge)
+circuit:compile("Fireball", 1)
 
--- MAIN TURRET LOOP
-print()
-print("=== Turret Active ===")
-print("Scanning for entities...")
+-- Execution costs:
+-- - 5% FE per tick while code runs
+-- - 100k FE when burn() is called
+-- - 1M FE when explode() is called
+-- Total: ~1.1M FE + tick costs
 
--- Track targets
-local targets = {}
-local lastScan = 0
-
-while true do
-  -- MODE 1: Advanced Peripherals scanEntities() method
-  if hasAdvancedPeripherals then
-    -- Scan every 0.5 seconds
-    if os.clock() - lastScan > 0.5 then
-      -- Advanced Peripherals: scanEntities() method
-      local entities = detector.scanEntities(attackRange)
-
-      targets = {}
-      for _, entity in ipairs(entities) do
-        -- Filter for players only (ignore mobs)
-        if entity.type == "player" then
-          -- Calculate distance from turret
-          local dx = entity.x - x
-          local dy = entity.y - y
-          local dz = entity.z - z
-          local distance = math.sqrt(dx*dx + dy*dy + dz*dz)
-
-          if distance <= attackRange then
-            table.insert(targets, {
-              name = entity.name,
-              x = entity.x,
-              y = entity.y,
-              z = entity.z,
-              distance = distance
-            })
-          end
-        end
-      end
-
-      lastScan = os.clock()
-    end
-
-    -- Attack closest target
-    if #targets > 0 then
-      -- Sort by distance
-      table.sort(targets, function(a, b) return a.distance < b.distance end)
-      local target = targets[1]
-
-      print("TARGET ACQUIRED: " .. target.name .. " (" .. math.floor(target.distance) .. " blocks)")
-
-      -- Calculate angle to target
-      local angle = math.deg(math.atan2(target.z - z, target.x - x))
-
-      -- Turn to face target (simplified - real implementation would use turtle.turnLeft/Right)
-      print("Engaging at angle: " .. math.floor(angle) .. "°")
-
-      -- Execute attack circuit
-      this.inv(1):execute()  -- Fire!
-
-      print("Fired at " .. target.name)
-    else
-      print("No targets in range (" .. attackRange .. " blocks)")
-    end
-
-    sleep(0.1)
-
-  -- MODE 2: Fallback mode using mining circuit (no Advanced Peripherals)
-  else
-    print("⚠ Fallback Mode: Using mining circuit for demonstration")
-    print("(In real implementation, this would use basic turtle.detect() methods)")
-
-    -- Mock attack using mining circuit
-    -- This demonstrates circuits work standalone without Advanced Peripherals
-    local mineCircuit = assignCircuit("Mock Mining", this.inv(2))
-
-    local mineDepth = mineCircuit:baseVal()
-
-    mineCircuit:addForLoop(mineDepth, function()
-      mineCircuit:turtleDigForward()
-      mineCircuit:turtleMove()
-      mineCircuit:sleep(1)
-    end)
-
-    mineCircuit:compile()
-
-    print("✓ Mock mining circuit compiled (demonstrating standalone mode)")
-    print("Executing mining circuit...")
-
-    this.inv(2):execute()
-
-    print("Mining complete - turret can function without Advanced Peripherals")
-    break
-  end
-end</code></pre>
+print("Spell compiled to cartridge 1")
+print("Press R to cast (or right-click tablet)")</code></pre>
 
         <h4>Cartridge Management</h4>
         <pre><code class="language-lua">-- EXPORT: Backup Circuit to .lua file (for sharing)
-attackCircuit:exportToFile("turret_attack_v2.lua")
+circuit:exportToFile("fireball_v2.lua")
 -- Saves to CC:Tweaked file system, can be copied to floppy disk
 
 -- IMPORT: Load Circuit from file
-local imported = loadCircuitFile("turret_attack_v2.lua")
+local imported = loadCircuitFile("fireball_v2.lua")
 -- Still requires empty cartridge and modules to compile
 
 -- DECOMPILE: Recover modules from cartridge (destroys cartridge)
 local recoveredModules = this.inv(1):decompile()
--- Returns: {branchModule x1, baseValModule x3}
--- Cartridge destroyed, modules returned to turtle
+-- Returns: {burnModule x1, explodeModule x1, rayCastModule x1}
+-- Cartridge destroyed, modules returned to tablet
 
 -- SWITCH: Change active cartridge
 this.setActiveCartridge(2)  -- Switch to cartridge in slot 2
@@ -392,11 +273,11 @@ if metadata.compiled then
 end</code></pre>
 
         <h5>RECOMMENDED: Separate Compilation Script</h5>
-        <pre><code class="language-lua">-- compile_mining.lua
--- Run ONCE to compile mining circuit to cartridge
+        <pre><code class="language-lua">-- compile_combat.lua
+-- Run ONCE to compile combat circuit to cartridge
 -- This script consumes modules and creates the executable
 
-print("=== Mining Circuit Compilation ===")
+print("=== Combat Spell Compilation ===")
 
 -- Check if cartridge already compiled
 local cartridge = this.inv(1)
@@ -406,53 +287,53 @@ if cartridge:isCompiled() then
   return
 end
 
--- Create circuit
-local miningCircuit = assignCircuit("Strip Mining v1.0", this.inv(1))
+-- Create circuit with unrestricted Lua
+local circuit = Projectile.new("lightning_bolt")
 
--- Define parameters
-local mineDepth = miningCircuit:baseVal()
-local mineWidth = miningCircuit:baseVal()
-local delay = miningCircuit:baseVal()
+-- Define parameters (any Lua code!)
+local damage = 50
+local chainCount = 3
 
--- Build logic
-miningCircuit:addForLoop(mineDepth, function()
-  miningCircuit:addForLoop(mineWidth, function()
-    miningCircuit:turtleDigForward()
-    miningCircuit:turtleMove()
-    miningCircuit:turtleTurnRight()
-    miningCircuit:turtleDigForward()
-    miningCircuit:turtleMove()
-    miningCircuit:turtleTurnLeft()
-  end)
-  miningCircuit:sleep(delay / 10)
+-- Build logic with module method calls
+circuit:onImpact(function(target)
+  -- Epic module: chain lightning (100k FE per call)
+  chainLightning(target, chainCount, 0.8)
+
+  -- Rare module: deal damage (10k FE per call)
+  dealDamage(target, damage)
+
+  -- Normal Lua logic works!
+  if math.random() > 0.5 then
+    print("Critical hit!")
+    dealDamage(target, damage)  -- Another 10k FE
+  end
 end)
 
 -- Compile
-local success = miningCircuit:compile()
+local success = circuit:compile("Lightning Bolt", 1)
 
 if success then
-  print("✓ Mining circuit compiled successfully!")
-  print("Depth: " .. mineDepth .. " blocks")
-  print("Width: " .. mineWidth .. " blocks")
-  print("Modules consumed: For Loop x2, baseVal() x3")
+  print("✓ Combat circuit compiled successfully!")
+  print("Modules consumed: chainLightning x1, dealDamage x1")
+  print("FE cost per cast: ~120k + 5% FE/tick")
   print()
-  print("Run 'use_mining.lua' to execute this circuit")
+  print("Run 'use_combat.lua' to execute this circuit")
 else
   print("✗ Compilation failed - insufficient modules")
 end</code></pre>
 
         <h5>RECOMMENDED: Separate Usage Script</h5>
-        <pre><code class="language-lua">-- use_mining.lua
--- Run this script to EXECUTE the compiled mining circuit
+        <pre><code class="language-lua">-- use_combat.lua
+-- Run this script to EXECUTE the compiled combat circuit
 -- Can be run repeatedly without consuming modules
 
-print("=== Mining Circuit Execution ===")
+print("=== Combat Spell Execution ===")
 
 -- Check if cartridge is compiled
 local cartridge = this.inv(1)
 if not cartridge:isCompiled() then
   print("✗ Cartridge not compiled!")
-  print("Run 'compile_mining.lua' first")
+  print("Run 'compile_combat.lua' first")
   return
 end
 
@@ -460,25 +341,24 @@ end
 local circuitName = cartridge:getCircuitName()
 print("Executing: " .. circuitName)
 
--- Check energy
-local energyPoint = peripheral.find("quantum_energy_point")
-if not energyPoint then
-  print("✗ No Quantum Energy Point found!")
-  print("Insert power source in peripheral slot")
-  return
+-- Check FE charge
+local tablet = peripheral.find("tablet") or this
+local energyAvailable = tablet.getEnergyStored()
+print("Tablet FE: " .. energyAvailable .. " FE")
+
+if energyAvailable < 150000 then
+  print("⚠ Warning: Low FE! Spell may fail mid-cast")
 end
 
-local energyAvailable = energyPoint.getEnergyStored()
-print("Energy available: " .. energyAvailable .. " FE")
-
 -- Execute circuit
-print("Starting mining operation...")
+print("Casting spell...")
 local executeSuccess = cartridge:execute()
 
 if executeSuccess then
-  print("✓ Mining circuit completed successfully!")
+  print("✓ Spell cast successfully!")
+  print("FE consumed: ~120k + tick costs")
 else
-  print("✗ Execution failed - check errors above")
+  print("✗ Cast failed - insufficient FE or error")
 end</code></pre>
 
         <h5>COMBINED: Compile + Use (Single Script)</h5>
@@ -489,12 +369,12 @@ end</code></pre>
           </div>
         </div>
 
-        <pre><code class="language-lua">-- mining_auto.lua
+        <pre><code class="language-lua">-- spell_auto.lua
 -- Combined script: Compiles if needed, then executes
 -- LOGIC: if not compiled → compile and use
 --        if compiled → just use
 
-print("=== Auto Mining System ===")
+print("=== Auto Combat Spell ===")
 
 local cartridge = this.inv(1)
 local needsCompilation = not cartridge:isCompiled()
@@ -503,19 +383,21 @@ local needsCompilation = not cartridge:isCompiled()
 if needsCompilation then
   print("[COMPILE MODE] Cartridge empty - compiling circuit...")
 
-  local miningCircuit = assignCircuit("Auto Mining", this.inv(1))
+  local circuit = Projectile.new("ice_shard")
 
-  local mineDepth = miningCircuit:baseVal()
-  local mineWidth = miningCircuit:baseVal()
+  -- Unrestricted Lua code
+  local damage = 30
+  local slowPercent = 50
 
-  miningCircuit:addForLoop(mineDepth, function()
-    miningCircuit:addForLoop(mineWidth, function()
-      miningCircuit:turtleDigForward()
-      miningCircuit:turtleMove()
-    end)
+  circuit:onImpact(function(target)
+    -- Rare module: freeze effect (10k FE)
+    freeze(target, 5)
+
+    -- Rare module: deal damage (10k FE)
+    dealDamage(target, damage)
   end)
 
-  local success = miningCircuit:compile()
+  local success = circuit:compile("Ice Shard", 1)
 
   if not success then
     print("✗ Compilation failed - insufficient modules")
@@ -528,13 +410,13 @@ else
 end
 
 -- STEP 2: Execute the circuit
-print("Executing circuit...")
+print("Casting spell...")
 local executeSuccess = cartridge:execute()
 
 if executeSuccess then
-  print("✓ Mining operation complete")
+  print("✓ Spell cast complete")
 else
-  print("✗ Execution failed")
+  print("✗ Cast failed")
 end</code></pre>
 
         <h5>ADVANCED: Compile → Use → Decompile Pattern</h5>
@@ -549,16 +431,17 @@ local cartridge = this.inv(1)
 -- STEP 1: Compile
 print("[1/3] Compiling temporary circuit...")
 
-local tempCircuit = assignCircuit("Temp Task", this.inv(1))
+local circuit = Instant.new("heal")
 
-local iterations = tempCircuit:baseVal()
+-- Simple heal spell
+circuit:onCast(function(caster)
+  -- Epic module: heal (100k FE)
+  heal(caster, 20)
 
-tempCircuit:addForLoop(iterations, function()
-  tempCircuit:turtleDigForward()
-  tempCircuit:turtleMove()
+  print("Healed " .. caster.name)
 end)
 
-local compileSuccess = tempCircuit:compile()
+local compileSuccess = circuit:compile("Temp Heal", 1)
 if not compileSuccess then
   print("✗ Compilation failed")
   return
@@ -596,6 +479,116 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
             • Decompile cartridge to recover modules (destroys cartridge)<br>
             • Share .lua files, but recipients still need modules to compile<br>
             • Strategic module management is key to progression
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="faq" class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+    <div class="section-content">
+      <div class="card">
+        <h3>Q: Are modules consumed when I compile a circuit?</h3>
+        <p><strong>A:</strong> No, modules are <strong>not consumed or destroyed</strong>. When you compile a circuit to a cartridge, the module's NBT data (configuration and properties) is <strong>transferred</strong> to the cartridge. The physical module item moves from your device to the cartridge, binding it to that specific circuit. Think of it like installing software - you're transferring the module's functionality, not destroying it.</p>
+
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle"></i>
+          <div>
+            <strong>Module Flow:</strong> Device Module Slots → Compile Circuit → Cartridge (modules stored here) → Decompile to recover modules
+          </div>
+        </div>
+
+        <h3>Q: What is a cartridge?</h3>
+        <p><strong>A:</strong> A <strong>Logic Cartridge</strong> is a digital storage medium that holds compiled circuits. Think of it like a Game Boy cartridge or a USB drive - it stores your executable circuit along with all the modules that circuit uses. Cartridges:</p>
+        <ul>
+          <li>Store compiled Lua circuits with their module data</li>
+          <li>Can be inserted into devices to execute circuits</li>
+          <li>Hold metadata like circuit name, compile timestamp, and author</li>
+          <li>Are portable - swap between devices or share with other players</li>
+          <li>Can be decompiled to recover modules (destroys the cartridge but returns modules to your inventory)</li>
+        </ul>
+
+        <h3>Q: What is a circuit?</h3>
+        <p><strong>A:</strong> A <strong>Circuit</strong> is an executable Lua program that you write using module methods. It's compiled from your code and the installed modules, then stored on a cartridge. Circuits:</p>
+        <ul>
+          <li>Are written in unrestricted Lua - use any code, loops, conditionals, functions</li>
+          <li>Call module methods to perform actions (burn, explode, teleport, heal, etc.)</li>
+          <li>Execute with FE costs (5% per tick + one-time costs per module call)</li>
+          <li>Have types: Projectile, Instant, Raycast, Area, or Summon</li>
+          <li>Can be bound to keybinds for quick casting</li>
+        </ul>
+        <p><strong>Example:</strong> A fireball circuit that calls burn() and explode() when it hits a target.</p>
+
+        <h3>Q: What is a module?</h3>
+        <p><strong>A:</strong> A <strong>Module</strong> is an item that provides action methods to your circuits. When installed in a device, modules appear on the side of the coding interface and give you access to special functions like burn(), teleport(), or createShield(). Each module:</p>
+        <ul>
+          <li>Provides 1-3 related action methods</li>
+          <li>Has a rarity (Rare, Epic, Legendary, Artifact) that determines FE cost</li>
+          <li>Must be installed in device before compiling</li>
+          <li>Transfers to cartridge during compilation</li>
+          <li>Can be recovered by decompiling the cartridge</li>
+        </ul>
+
+        <h3>Q: Aren't modules just upgrades? Why don't they stay in the system permanently?</h3>
+        <p><strong>A:</strong> If modules stayed in devices permanently, it would <strong>completely kill progression</strong>. Here's why the transfer system is essential:</p>
+
+        <div class="alert alert-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div>
+            <strong>Progression Problem:</strong> If you could install a Legendary Explosion Module once and use it in infinite circuits forever, you'd reach endgame in minutes. There would be no reason to explore ruins, farm materials, or engage with the mod's systems after your first lucky drop.
+          </div>
+        </div>
+
+        <p><strong>Why the transfer system works:</strong></p>
+        <ul>
+          <li>Creates strategic decisions: "Do I use my rare Teleport Module for this circuit or save it?"</li>
+          <li>Makes powerful circuits valuable and tradeable</li>
+          <li>Encourages exploration to find more modules</li>
+          <li>Balances power - you can't have 50 god-tier circuits without investment</li>
+          <li>Adds risk/reward to decompiling (destroy circuit, recover modules)</li>
+        </ul>
+
+        <p><strong>Definition from Computer Science:</strong> In programming, a <strong>module</strong> is "a self-contained unit of functionality that can be combined with other modules to create a complete program" <em>(Martin, Robert C. "Clean Architecture." 2017)</em>. Our modules follow this principle - they're <strong>reusable components</strong> that you combine into different circuits, not permanent upgrades. The transfer system enforces intentional reuse rather than infinite duplication.</p>
+
+        <p class="text-muted"><small>Additional reference: Parnas, D.L. "On the Criteria To Be Used in Decomposing Systems into Modules." Communications of the ACM, 1972. Modules are designed as interchangeable, composable units - not permanent installations.</small></p>
+
+        <h3>Q: How do you limit abuse and prevent infinite loops?</h3>
+        <p><strong>A:</strong> The system uses <strong>natural FE-based limitations</strong> that make abuse impossible without destroying balance:</p>
+
+        <h4>1. Per-Tick FE Drain (5%)</h4>
+        <p>While your circuit code executes, it drains <strong>5% of your max FE capacity per tick</strong>. This means:</p>
+        <ul>
+          <li>A 100,000 FE device drains 5,000 FE/tick while code runs</li>
+          <li>Infinite loops run out of FE in ~20 ticks (1 second)</li>
+          <li>Long-running circuits need massive FE capacity or finish quickly</li>
+        </ul>
+
+        <h4>2. Module Method Costs (One-Time Per Call)</h4>
+        <p>Every time you call a module method, it costs FE based on rarity:</p>
+        <ul>
+          <li><span class="badge badge-rare">Rare</span>: 10,000 FE per call</li>
+          <li><span class="badge badge-epic">Epic</span>: 100,000 FE per call</li>
+          <li><span class="badge badge-legendary">Legendary</span>: 1,000,000 FE per call</li>
+          <li><span class="badge badge-artifact">Artifact</span>: 10,000,000 FE per call</li>
+        </ul>
+
+        <h4>3. Natural Infinite Loop Prevention</h4>
+        <pre><code class="language-lua">-- This loop will run out of FE automatically
+while true do
+  explode(10)  -- Legendary: 1M FE per call
+  -- After ~10 iterations, device has no FE → code stops
+end</code></pre>
+
+        <p><strong>Result:</strong> Players can write any code they want, but physics (FE limits) naturally prevents abuse. Want to spam explosions? You need massive FE infrastructure. It's self-balancing.</p>
+
+        <div class="alert alert-success">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Design Philosophy:</strong> Instead of artificial code restrictions, we use resource costs. Write the code you want, but be prepared to power it. This rewards infrastructure building and strategic resource management.
           </div>
         </div>
       </div>
@@ -717,21 +710,22 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
 
         <h4>Circuits & Programming</h4>
         <ul>
-          <li><strong>Circuit:</strong> Executable Lua program compiled from modules. Stored in cartridge slot. Costs FE to cast.</li>
+          <li><strong>Circuit:</strong> Executable Lua program compiled from modules. Stored in cartridge slot. Costs FE to execute.</li>
           <li><strong>Circuit Type:</strong> Category of circuit: Projectile, Instant, Raycast, Area, Summon. Determines behavior.</li>
-          <li><strong>baseVal():</strong> Function returning random value at compile time. Capped by module rarity (cheap FE cost).</li>
-          <li><strong>Predetermined Value:</strong> Fixed value in circuit code (e.g., local x = 10). More expensive than baseVal() to compile.</li>
-          <li><strong>effectChain():</strong> PSI-style method chaining for circuit effects. Example: :onImpact():applyDamage(x):createExplosion(y)</li>
-          <li><strong>Compile:</strong> Process of binding modules to circuit script and creating executable. Requires FE and time.</li>
+          <li><strong>Unrestricted Lua:</strong> Write any Lua code you want. No restrictions on values, loops, or logic.</li>
+          <li><strong>Module Methods:</strong> Action functions provided by installed modules. Example: burn(), explode(), teleport(), heal()</li>
+          <li><strong>FE Per Tick Cost:</strong> 5% of max FE drained per tick while circuit code executes</li>
+          <li><strong>FE Per Call Cost:</strong> One-time FE cost when module method is called. Rare: 10k, Epic: 100k, Legendary: 1M, Artifact: 10M</li>
+          <li><strong>Compile:</strong> Process of transferring modules to cartridge and saving circuit script.</li>
           <li><strong>Keybind:</strong> Keyboard shortcut assigned to cartridge slot. Allows instant circuit casting without opening tablet.</li>
         </ul>
 
-        <h4>Modules & Logic Chains</h4>
+        <h4>Modules & Actions</h4>
         <ul>
-          <li><strong>Module:</strong> Programmable item that defines circuit capabilities. Installed into tablet's module slots.</li>
-          <li><strong>Module Rarity:</strong> Common/Rare/Epic/Legendary/Relic/Artifact. Determines baseVal() caps and slot requirements.</li>
-          <li><strong>Value Cap:</strong> Maximum value for baseVal() or predetermined values. Increases with module rarity.</li>
-          <li><strong>Logic Chain:</strong> Visual programming grid at workbench. 9×6 grid with module cards and directional arrows.</li>
+          <li><strong>Module:</strong> Action provider that adds methods to your Lua environment. Installed into tablet's module slots.</li>
+          <li><strong>Module Rarity:</strong> Rare/Epic/Legendary/Artifact. Determines FE cost per method call and power level.</li>
+          <li><strong>Action Method:</strong> Function provided by module. Examples: burn(target, duration), explode(radius), teleport(coords)</li>
+          <li><strong>Module List GUI:</strong> Right-side panel showing installed modules available for use in circuits.</li>
           <li><strong>Available Module:</strong> Module visible in tablet's right-side GUI. Not yet compiled into circuit.</li>
           <li><strong>Compiled Module:</strong> Module bound to circuit script. Disappears from right-side GUI after compilation.</li>
         </ul>
@@ -1312,16 +1306,16 @@ power.clearAlerts() --> boolean</code></pre>
         <div class="alert alert-info">
           <i class="fas fa-lightbulb"></i>
           <div>
-            <strong>Example Build:</strong> Install math modules (Base Value, Power, etc.) into your tablet at the workbench. Write a fireball circuit with damage = x^y where x=7, y=3. Compile to cartridge → modules transfer and circuit deals 343 damage. Bind to key "R" for instant casting.
+            <strong>Example Build:</strong> Install burn (Epic) and explode (Legendary) modules into your tablet at the workbench. Write unrestricted Lua code calling burn() and explode() methods. Compile to cartridge → modules transfer. Execute circuit: costs 5% FE/tick + 100k FE (burn) + 1M FE (explode). Bind to key "R" for instant casting.
           </div>
         </div>
 
         <h3>How It Works</h3>
         <ol>
-          <li><strong>Install Modules:</strong> At the workbench, install modules from your inventory into the device's module slots</li>
-          <li><strong>Write Lua Script:</strong> Code circuit behavior in the device using installed modules (normal CC:Tweaked coding)</li>
+          <li><strong>Install Modules:</strong> At the workbench, install action modules from your inventory into the device's module slots</li>
+          <li><strong>Write Unrestricted Lua:</strong> Code any Lua logic you want. Call module methods like burn(), explode(), teleport() for effects</li>
           <li><strong>Compile to Cartridge:</strong> Run compile command → Modules transfer from device to cartridge → Circuit becomes executable</li>
-          <li><strong>Execute:</strong> Compiled circuit stored in cartridge, executable via keybind or direct call</li>
+          <li><strong>Execute with FE Cost:</strong> Circuit runs with 5% FE/tick drain + one-time FE cost per module method call</li>
           <li><strong>Recover Modules:</strong> Decompile cartridge to get modules back (destroys cartridge)</li>
         </ol>
 
@@ -1400,169 +1394,169 @@ power.clearAlerts() --> boolean</code></pre>
           </div>
         </div>
 
-        <h3>What Counts Toward Module Limits</h3>
+        <h3>FE Cost System</h3>
         <div class="row">
           <div class="col-md-6">
-            <h4><i class="fas fa-check text-success"></i> Counts Toward Limits</h4>
+            <h4><i class="fas fa-bolt text-warning"></i> Execution Costs</h4>
             <ul>
-              <li>Formulation modules (math operations: +, -, *, /, ^, sqrt)</li>
-              <li>Effect modules (damage, healing, teleport, shield, etc.)</li>
-              <li>Global variable modules (cost 2 basic slots)</li>
-              <li>Conditional modules (if/then logic, comparisons)</li>
-              <li>Targeting modules (raycast, area, homing)</li>
+              <li><strong>5% FE Per Tick:</strong> Constant drain while circuit code executes</li>
+              <li><strong>Natural Loop Prevention:</strong> Infinite loops run out of FE automatically</li>
+              <li><strong>Example:</strong> 1M FE capacity = 20 ticks max execution (20,000 FE at 5%/tick = 1M FE)</li>
+              <li><strong>Optimization:</strong> Faster code = less FE consumed</li>
             </ul>
           </div>
           <div class="col-md-6">
-            <h4><i class="fas fa-times text-danger"></i> Does NOT Count</h4>
+            <h4><i class="fas fa-fire text-danger"></i> Module Method Costs</h4>
             <ul>
-              <li>Circuit root modules (mandatory, free)</li>
-              <li>Base value modules (free random number generators)</li>
-              <li>Local variable modules (free, reusable)</li>
-              <li>Junction modules (free, for routing data)</li>
-              <li>Branch junction modules (free, split outputs)</li>
+              <li><strong>Rare:</strong> 10,000 FE per method call</li>
+              <li><strong>Epic:</strong> 100,000 FE per method call</li>
+              <li><strong>Legendary:</strong> 1,000,000 FE per method call</li>
+              <li><strong>Artifact:</strong> 10,000,000 FE per method call</li>
             </ul>
           </div>
         </div>
 
-        <h3>Module Types Detailed</h3>
+        <div class="alert alert-info">
+          <i class="fas fa-lightbulb"></i>
+          <div>
+            <strong>Example Calculation:</strong><br>
+            Circuit with burn() [Epic] + explode() [Legendary] running for 10 ticks:<br>
+            • Tick cost: 10 ticks × 5% × 1M FE capacity = 500k FE<br>
+            • Method costs: 100k (burn) + 1M (explode) = 1.1M FE<br>
+            • <strong>Total: 1.6M FE</strong>
+          </div>
+        </div>
+
+        <h3>Module Types (Action-Based)</h3>
+        <p>Modules provide action methods that can be called from unrestricted Lua code. Each module type offers specific methods with FE costs.</p>
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <div class="card bg-dark border-info">
-              <h4><i class="fas fa-magic"></i> Circuit Root Module (Mandatory, Free)</h4>
-              <p><strong>Purpose:</strong> Defines the circuit type and serves as the root of all logic chains</p>
-              <p><strong>Placement:</strong> Must be first module in chain (typically slot [1,1])</p>
-              <p><strong>Arrows:</strong> Multiple outputs (north, south, east, west), No inputs</p>
-              <p><strong>Types:</strong> Projectile (fireball, arrow), Instant (heal, buff), Area (explosion, shield), Summon (entity, construct)</p>
-              <p><strong>Example:</strong> "Fireball Root" → outputs to damage, range, speed modules</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <div class="card bg-dark border-success">
-              <h4><i class="fas fa-dice"></i> Base Value Module (Free)</h4>
-              <p><strong>Purpose:</strong> Generates a random value on compile (procedural circuit stats)</p>
-              <p><strong>Range:</strong> 1-100 (configurable per module)</p>
-              <p><strong>Arrows:</strong> One output only</p>
-              <p><strong>Distribution:</strong> Linear, Bell curve, or Weighted</p>
-              <p><strong>On Compile:</strong> Module assigned random value → flows to connected variable</p>
-              <p><strong>Example:</strong> Roll 2-10 for base damage, 1-5 for exponent</p>
+            <div class="card bg-dark border-danger">
+              <h4><i class="fas fa-fire"></i> Effect Modules (Rare/Epic)</h4>
+              <p><strong>Purpose:</strong> Apply status effects to entities</p>
+              <p><strong>FE Cost:</strong> Rare: 10k FE, Epic: 100k FE</p>
+              <p><strong>Methods:</strong></p>
+              <ul>
+                <li><code>burn(target, duration)</code> - Set entity on fire (Epic)</li>
+                <li><code>wither(target, duration)</code> - Apply wither effect (Epic)</li>
+                <li><code>poison(target, duration)</code> - Poison entity (Rare)</li>
+                <li><code>freeze(target, duration)</code> - Slow and freeze entity (Rare)</li>
+                <li><code>levitation(target, duration)</code> - Float entity (Rare)</li>
+              </ul>
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
             <div class="card bg-dark border-primary">
-              <h4><i class="fas fa-x"></i> Local Variable Module (Free, Reusable)</h4>
-              <p><strong>Purpose:</strong> Stores value for use in formulations within one circuit</p>
-              <p><strong>Naming:</strong> Single character: x, y, z, a, b, c</p>
-              <p><strong>Arrows:</strong> One input (from base value or formulation), Multiple outputs (to formulations, effects)</p>
-              <p><strong>Reusability:</strong> Same variable name can be used in different chains (scoped per circuit)</p>
-              <p><strong>Example:</strong> x = 7 → use in multiple formulas like x^2, x+10, x*3</p>
+              <h4><i class="fas fa-wind"></i> Force Modules (Rare/Epic)</h4>
+              <p><strong>Purpose:</strong> Apply physics forces to entities</p>
+              <p><strong>FE Cost:</strong> Rare: 10k FE, Epic: 100k FE</p>
+              <p><strong>Methods:</strong></p>
+              <ul>
+                <li><code>applyForce(entity, vector)</code> - Push entity with vector (Rare)</li>
+                <li><code>knockback(entity, strength)</code> - Push entity away (Rare)</li>
+                <li><code>pullToward(entity, strength)</code> - Pull entity toward caster (Epic)</li>
+                <li><code>launch(entity, height)</code> - Launch entity upward (Epic)</li>
+              </ul>
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
             <div class="card bg-dark border-warning">
-              <h4><i class="fas fa-font"></i> Global Variable Module (Costs 2 Basic Slots)</h4>
-              <p><strong>Purpose:</strong> Stores value accessible across ALL compiled circuits on tablet</p>
-              <p><strong>Naming:</strong> Capitalized: X, Y, Z, A, B, C</p>
-              <p><strong>Arrows:</strong> One input, Unlimited outputs across entire grid</p>
-              <p><strong>Restriction:</strong> Cannot be redefined. Once set, that letter is reserved globally.</p>
-              <p><strong>Use Case:</strong> Track tablet-wide stats: "total circuits cast", "accumulated damage", "mana regen rate"</p>
+              <h4><i class="fas fa-bomb"></i> Explosion Modules (Legendary)</h4>
+              <p><strong>Purpose:</strong> Create explosive effects</p>
+              <p><strong>FE Cost:</strong> Legendary: 1M FE</p>
+              <p><strong>Methods:</strong></p>
+              <ul>
+                <li><code>explode(radius)</code> - Create explosion at position</li>
+                <li><code>implosion(radius)</code> - Pull entities inward then explode</li>
+                <li><code>chainExplosion(count, delay)</code> - Multiple explosions over time</li>
+              </ul>
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
-            <div class="card bg-dark border-secondary">
-              <h4><i class="fas fa-code-branch"></i> Junction Card (Free, Routing)</h4>
-              <p><strong>Purpose:</strong> Combines multiple inputs into single output OR splits single input to multiple outputs</p>
-              <p><strong>Arrows:</strong> Multiple inputs, Multiple outputs</p>
-              <p><strong>Operations:</strong></p>
+            <div class="card bg-dark border-danger">
+              <h4><i class="fas fa-skull"></i> Damage Modules (Rare)</h4>
+              <p><strong>Purpose:</strong> Deal damage to entities</p>
+              <p><strong>FE Cost:</strong> Rare: 10k FE</p>
+              <p><strong>Methods:</strong></p>
               <ul>
-                <li>Combine Mode: Adds all inputs together</li>
-                <li>Pass-Through Mode: Passes first input value to all outputs</li>
-                <li>Select Mode: Passes highest/lowest input (configurable)</li>
+                <li><code>dealDamage(target, amount)</code> - Direct damage</li>
+                <li><code>magicDamage(target, amount)</code> - Bypasses armor</li>
+                <li><code>trueDamage(target, amount)</code> - Bypasses all resistances</li>
+                <li><code>percentDamage(target, percent)</code> - % of max health</li>
               </ul>
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
             <div class="card bg-dark border-info">
-              <h4><i class="fas fa-stream"></i> Branch Junction Card (Free, Splitting)</h4>
-              <p><strong>Purpose:</strong> Splits one input to multiple output chains</p>
-              <p><strong>Arrows:</strong> One input, Multiple outputs (up to 4: north, south, east, west)</p>
-              <p><strong>Use Case:</strong> Apply same value to multiple effects</p>
-              <p><strong>Example:</strong> Same formulation result feeds Fire Damage, Ice Damage, and Explosion Radius</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <div class="card bg-dark border-danger">
-              <h4><i class="fas fa-calculator"></i> Formulation Card (Costs 1 Mod)</h4>
-              <p><strong>Purpose:</strong> Applies mathematical operation to inputs</p>
-              <p><strong>Arrows:</strong> 1-2 inputs (depending on operation), 1 output</p>
-              <p><strong>Operations:</strong></p>
+              <h4><i class="fas fa-crosshairs"></i> Targeting Modules (Rare)</h4>
+              <p><strong>Purpose:</strong> Find and select entities</p>
+              <p><strong>FE Cost:</strong> Rare: 10k FE</p>
+              <p><strong>Methods:</strong></p>
               <ul>
-                <li><strong>Unary:</strong> x^2, sqrt(x), abs(x), -x, x!, floor(x), ceil(x)</li>
-                <li><strong>Binary:</strong> x+y, x-y, x*y, x/y, x^y, x%y, max(x,y), min(x,y)</li>
-                <li><strong>Trigonometric:</strong> sin(x), cos(x), tan(x), asin(x), acos(x), atan(x)</li>
-                <li><strong>Logarithmic:</strong> log(x), ln(x), log10(x)</li>
-              </ul>
-              <p><strong>Rarity Requirements:</strong></p>
-              <ul>
-                <li>Basic: +, -, *, /, x^2, sqrt</li>
-                <li>Uncommon: x^y, log, trig functions</li>
-                <li>Rare: Custom formulas (type in formula field)</li>
+                <li><code>raycast(distance)</code> - Get entity in line of sight</li>
+                <li><code>findEntitiesInRadius(radius)</code> - Get all entities in area</li>
+                <li><code>findNearestEnemy()</code> - Get closest hostile entity</li>
+                <li><code>findPlayer(name)</code> - Get specific player</li>
               </ul>
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
-            <div class="card bg-dark border-warning">
-              <h4><i class="fas fa-fire"></i> Effect Cards (Cost Mods by Rarity)</h4>
-              <p><strong>Purpose:</strong> Apply compiled value to weapon behavior</p>
-              <p><strong>Common Effect Cards:</strong></p>
+            <div class="card bg-dark border-legendary">
+              <h4><i class="fas fa-portal"></i> Teleport Modules (Legendary)</h4>
+              <p><strong>Purpose:</strong> Teleport entities or caster</p>
+              <p><strong>FE Cost:</strong> Legendary: 1M FE</p>
+              <p><strong>Methods:</strong></p>
               <ul>
-                <li><strong>Damage Card (Basic):</strong> Sets projectile damage</li>
-                <li><strong>Fire Damage (Uncommon):</strong> Input: DPS + Duration (defaults 1s if not supplied)</li>
-                <li><strong>Ice Damage (Uncommon):</strong> Input: DPS + Slow % + Duration</li>
-                <li><strong>Explosion (Rare):</strong> Input: Radius + Center Damage (creates AoE)</li>
-                <li><strong>Homing (Rare):</strong> Input: Turn rate (projectile tracks nearest enemy)</li>
-                <li><strong>Piercing (Uncommon):</strong> Input: Number of entities to pierce</li>
-                <li><strong>Velocity (Basic):</strong> Input: Multiplier (1.0 = normal, 2.0 = double)</li>
-                <li><strong>Magazine Size (Basic):</strong> Input: Number of shots</li>
-                <li><strong>Fire Rate (Uncommon):</strong> Input: Shots per second</li>
-                <li><strong>Lifesteal (Rare):</strong> Input: Percentage (heals player)</li>
-                <li><strong>Chain Lightning (Epic):</strong> Input: Chains + Damage reduction %</li>
-                <li><strong>Gravity Well (Legendary):</strong> Input: Pull strength + Radius</li>
+                <li><code>teleport(coords)</code> - Teleport to coordinates</li>
+                <li><code>swap(entity1, entity2)</code> - Swap two entity positions</li>
+                <li><code>blink(direction, distance)</code> - Short-range teleport</li>
+                <li><code>recall()</code> - Return to spawn point</li>
               </ul>
             </div>
           </div>
 
-          <div class="col-md-12 mb-3">
-            <div class="card bg-dark border-danger">
-              <h4><i class="fas fa-question"></i> Conditional Cards (Rare/Epic)</h4>
-              <p><strong>Purpose:</strong> Apply logic to modify behavior based on conditions</p>
-              <p><strong>If Card (Rare):</strong></p>
+          <div class="col-md-6 mb-3">
+            <div class="card bg-dark border-success">
+              <h4><i class="fas fa-shield-alt"></i> Shield Modules (Epic/Legendary)</h4>
+              <p><strong>Purpose:</strong> Create protective barriers</p>
+              <p><strong>FE Cost:</strong> Epic: 100k FE, Legendary: 1M FE</p>
+              <p><strong>Methods:</strong></p>
               <ul>
-                <li>Input 1: Condition variable</li>
-                <li>Input 2: Comparison value</li>
-                <li>Input 3: True output</li>
-                <li>Input 4: False output</li>
-                <li>Operators: >, <, ==, !=, >=, <=</li>
+                <li><code>createShield(duration)</code> - Personal shield (Epic)</li>
+                <li><code>reflectDamage(percent, duration)</code> - Reflect damage back (Legendary)</li>
+                <li><code>absorbShield(maxDamage)</code> - Absorb up to X damage (Epic)</li>
               </ul>
-              <p><strong>Example:</strong> If x > 50, apply fire damage, else apply ice damage</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="card bg-dark border-artifact">
+              <h4><i class="fas fa-bolt"></i> Chain Lightning Module (Epic)</h4>
+              <p><strong>Purpose:</strong> Lightning that chains between enemies</p>
+              <p><strong>FE Cost:</strong> Epic: 100k FE</p>
+              <p><strong>Methods:</strong></p>
+              <ul>
+                <li><code>chainLightning(target, chainCount, damageReduction)</code></li>
+                <li>Hits target, then jumps to nearby enemies</li>
+                <li>Each chain deals reduced damage</li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <h3>PSI-Style Circuit Programming API</h3>
-        <p>Instead of visual programming, players write Lua code using a PSI-inspired API for circuit creation.</p>
+        <h3>Unrestricted Lua Programming</h3>
+        <p>Write any Lua code you want. Modules provide action methods. No code restrictions!</p>
 
         <div class="alert alert-info">
           <i class="fas fa-lightbulb"></i>
           <div>
-            <strong>Design Philosophy:</strong> Visual grid at workbench determines which modules are available. Code in tablet defines circuit behavior using those modules.
+            <strong>Design Philosophy:</strong> Modules installed at workbench provide methods. Write unrestricted Lua code calling those methods. FE costs naturally prevent abuse.
           </div>
         </div>
 
@@ -1570,92 +1564,85 @@ power.clearAlerts() --> boolean</code></pre>
         <pre><code class="language-lua">-- Create projectile circuit
 local circuit = Projectile.new("fireball")
 
--- Define local variables with random base values (cheap)
-local x = baseVal()  -- Random value, capped by module rarity
-local y = baseVal()  -- Random value, capped by module rarity
-local z = baseVal()  -- Random value, capped by module rarity
+-- Define parameters (UNRESTRICTED - any values!)
+local baseDamage = 50
+local burnTime = 10
+local explosionRadius = 5
 
--- Create effect chain
-local impactEffect = effectChain()
-  :onImpact()
-  :applyDamage(x^y)  -- Exponential damage formula
-  :applyKnockback(z * 0.5)
-  :createExplosion(z)
+-- Use normal Lua control flow
+local critChance = 0.3
+if math.random() < critChance then
+  baseDamage = baseDamage * 2
+end
 
--- Attach effect to projectile
-circuit:addEffect(impactEffect)
+-- Define impact behavior with module methods
+circuit:onImpact(function(target)
+  -- Call module methods (each costs FE)
+  burn(target, burnTime)       -- Epic module: 100k FE
+  dealDamage(target, baseDamage) -- Rare module: 10k FE
+  explode(explosionRadius)      -- Legendary: 1M FE
+end)
 
--- Compile and bind to cartridge slot
-circuit:compile("Fireball", 1)  -- Name: "Fireball", Cartridge slot: 1</code></pre>
+-- Compile to cartridge
+circuit:compile("Fireball", 1)
 
-        <h4>Value System: baseVal() vs Predetermined</h4>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Module Rarity</th>
-                <th>baseVal() Cap</th>
-                <th>Predetermined Cap</th>
-                <th>FE Cost Multiplier</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="badge bg-secondary">Common</span></td>
-                <td>2</td>
-                <td>2</td>
-                <td>1.0x (cheap)</td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-rare">Rare</span></td>
-                <td>5</td>
-                <td>5</td>
-                <td>1.5x</td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-epic">Epic</span></td>
-                <td>7</td>
-                <td>7</td>
-                <td>2.5x</td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-legendary">Legendary</span></td>
-                <td>10</td>
-                <td>10</td>
-                <td>5.0x</td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-artifact">Artifact/Relic</span></td>
-                <td>20</td>
-                <td>20</td>
-                <td>10.0x</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+-- Execution cost:
+-- 5% FE/tick + 100k + 10k + 1M = ~1.11M FE total</code></pre>
 
-        <div class="alert alert-warning">
-          <i class="fas fa-exclamation-triangle"></i>
-          <div>
-            <strong>Cost Difference:</strong><br>
-            • <code>baseVal()</code> = Random value assigned at compile (CHEAP - base FE cost)<br>
-            • Predetermined (e.g., <code>local x = 5</code>) = Fixed value (EXPENSIVE - multiplied FE cost)<br>
-            • Higher rarity modules allow higher caps but cost more FE
-          </div>
-        </div>
+        <h4>Advanced Example: Conditional Logic</h4>
+        <pre><code class="language-lua">-- Install: raycast (Rare), burn (Epic), freeze (Rare), dealDamage (Rare)
 
-        <h4>Example: Cheap vs Expensive Circuits</h4>
-        <pre><code class="language-lua">-- CHEAP: Uses baseVal() for random values
-local dmg = baseVal()  -- Random 1-10 (if Legendary module)
-local range = baseVal()  -- Random 1-10
-circuit:addEffect(effectChain():onImpact():applyDamage(dmg^2))
--- Compile cost: ~10k FE
+local circuit = Instant.new("adaptive_spell")
 
--- EXPENSIVE: Uses predetermined values
-local dmg = 10  -- Fixed value
-local range = 10  -- Fixed value
-circuit:addEffect(effectChain():onImpact():applyDamage(dmg^2))
--- Compile cost: ~50k FE (5x multiplier for Legendary)</code></pre>
+circuit:onCast(function(caster)
+  -- Get target using raycast module (10k FE)
+  local target = raycast(50)
+
+  if not target then
+    print("No target found")
+    return
+  end
+
+  -- Adaptive logic based on target health
+  if target.health > 100 then
+    -- High health: burn over time
+    burn(target, 15)  -- Epic: 100k FE
+    print("Applied burn to high-HP target")
+  elseif target.health > 50 then
+    -- Medium health: burst damage
+    dealDamage(target, 80)  -- Rare: 10k FE
+    print("Dealt burst damage")
+  else
+    -- Low health: freeze and finish
+    freeze(target, 5)  -- Rare: 10k FE
+    dealDamage(target, 40)  -- Rare: 10k FE
+    print("Froze and finished low-HP target")
+  end
+end)
+
+circuit:compile("Adaptive Spell", 1)</code></pre>
+
+        <h4>Example: Loops (Natural FE Prevention)</h4>
+        <pre><code class="language-lua">-- This infinite loop is SAFE - runs out of FE automatically!
+
+local circuit = Area.new("chain_reaction")
+
+circuit:onCast(function(caster)
+  local entities = findEntitiesInRadius(10)  -- Rare: 10k FE
+
+  -- Loop through all enemies
+  for i, entity in ipairs(entities) do
+    dealDamage(entity, 25)  -- Rare: 10k FE per call
+
+    -- Each iteration costs 10k FE
+    -- 1M FE capacity = max ~100 entities before FE runs out
+  end
+
+  print("Damaged " .. #entities .. " entities")
+end)
+
+-- Even if entities list is huge, FE runs out before breaking anything
+-- Natural protection against infinite loops!</code></pre>
 
         <h3>Circuit Cartridge System</h3>
         <p>Tablets can store multiple compiled circuits in cartridge slots.</p>
@@ -1732,28 +1719,6 @@ local info = tablet.getCartridge(1)
 -- Setting active cartridge
 tablet.setActiveCartridge(3)  -- Switch to slot 3</code></pre>
 
-        <h3>Arrow System (Visual Programming at Workbench)</h3>
-        <p>At workbench, visual grid determines which modules are available for circuit code. Each card has 4 sides: <strong>north, south, east, west</strong></p>
-
-        <div class="alert alert-warning">
-          <i class="fas fa-mouse-pointer"></i>
-          <div>
-            <strong>Clicking Arrows:</strong><br>
-            1st click: None (white line) → Output (green arrow pointing out)<br>
-            2nd click: Output (green) → Input (red arrow pointing in)<br>
-            3rd click: Input (red) → None (white line)
-          </div>
-        </div>
-
-        <h4>Connection Rules</h4>
-        <ul>
-          <li>Green arrow MUST point toward adjacent card's red arrow</li>
-          <li>Cards only accept data from inputs (red arrows)</li>
-          <li>One output can connect to multiple inputs (branch)</li>
-          <li>Outputs cannot connect to outputs</li>
-          <li>Inputs cannot connect to inputs</li>
-        </ul>
-
         <h3>Soulbind Module Application</h3>
         <div class="card bg-dark border-legendary">
           <h4><i class="fas fa-lock"></i> Soulbind Module Card (Legendary, Special)</h4>
@@ -1792,44 +1757,32 @@ tablet.setActiveCartridge(3)  -- Switch to slot 3</code></pre>
           </div>
         </div>
 
-        <h3>Lua API for Modification System</h3>
-        <pre><code class="language-lua">-- Get current modification grid state
-local grid = bench.getModificationGrid()
--- Returns 2D table [y][x] = cardData
+        <h3>Workbench Lua API</h3>
+        <pre><code class="language-lua">-- Get installed modules on device
+local modules = bench.getInstalledModules()
+-- Returns table of module names and rarities
 
--- Example iteration
-for y = 1, 6 do
-  for x = 1, 9 do
-    local card = grid[y][x]
-    if card then
-      print(string.format("Card at (%d,%d): %s", x, y, card.type))
-
-      -- Check arrows
-      if card.arrows.north == "output" then
-        print("  North output (green)")
-      elseif card.arrows.north == "input" then
-        print("  North input (red)")
-      end
-    end
-  end
+for name, rarity in pairs(modules) do
+  print(name .. " (" .. rarity .. ")")
 end
+-- Example output:
+-- burn_module (Epic)
+-- explode_module (Legendary)
+-- raycast_module (Rare)
 
--- Validate grid before compiling
-local valid, error = bench.validateModificationGrid()
-if not valid then
-  print("ERROR: " .. error)
-  -- Fix issues before compiling
-end
+-- Get module slot usage
+local limits = bench.getModuleLimits()
+print("Rare slots: " .. limits.rare_used .. "/" .. limits.rare_slots)
+print("Epic slots: " .. limits.epic_used .. "/" .. limits.epic_slots)
+print("Legendary slots: " .. limits.legendary_used .. "/" .. limits.legendary_slots)
 
--- Get mod slot usage
-local limits = bench.getModificationLimits()
-print("Basic mods: " .. limits.basic_used .. "/" .. limits.basic_slots)
-print("Uncommon mods: " .. limits.uncommon_used .. "/" .. limits.uncommon_slots)
+-- Check FE capacity
+local capacity = bench.getFECapacity()
+print("Device FE capacity: " .. capacity .. " FE")
 
--- Auto-modify if valid
-if valid then
-  bench.startModify()
-end</code></pre>
+-- Estimate circuit execution cost
+local estimatedCost = tablet.estimateExecutionCost(circuitCode)
+print("Estimated FE cost: " .. estimatedCost .. " FE")</code></pre>
       </div>
     </div>
   </div>
@@ -2267,50 +2220,84 @@ print("Charges remaining: " .. charges)</code></pre>
     </div>
     <div class="section-content">
       <div class="card">
-        <h3>Powered Weapons</h3>
+        <h3>Circuit Execution FE Costs</h3>
+        <div class="alert alert-info">
+          <i class="fas fa-bolt"></i>
+          <div>
+            <strong>New FE System:</strong> Circuits drain FE in two ways: constant per-tick drain + one-time costs when module methods are called.
+          </div>
+        </div>
+
+        <h4>Per-Tick Execution Cost</h4>
         <div class="table-responsive">
           <table class="table">
             <thead>
             <tr>
-              <th>Rarity</th>
-              <th>Modifications</th>
-              <th>FE per Shot</th>
-              <th>Internal Buffer</th>
+              <th>Cost Type</th>
+              <th>FE Drain</th>
+              <th>Purpose</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td><span class="badge bg-secondary">Uncommon</span></td>
-              <td>Any</td>
-              <td>0</td>
-              <td>0</td>
+              <td><strong>Per Tick</strong></td>
+              <td>5% of max FE capacity</td>
+              <td>Constant drain while circuit executes</td>
             </tr>
             <tr>
-              <td><span class="badge badge-rare">Rare</span></td>
-              <td>1-2 mods</td>
-              <td>100</td>
-              <td>10,000 (100 shots)</td>
+              <td>Example (1M FE capacity)</td>
+              <td>50,000 FE per tick</td>
+              <td>20 ticks max execution time</td>
             </tr>
             <tr>
-              <td><span class="badge badge-epic">Epic</span></td>
-              <td>3-4 mods</td>
-              <td>500</td>
-              <td>50,000 (100 shots)</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Legendary</span></td>
-              <td>5+ mods</td>
-              <td>2000</td>
-              <td>200,000 (100 shots)</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-artifact">Artifact</span></td>
-              <td>Any</td>
-              <td>5000+</td>
-              <td>1,000,000 (200 shots)</td>
+              <td>Example (10M FE capacity)</td>
+              <td>500,000 FE per tick</td>
+              <td>20 ticks max execution time</td>
             </tr>
             </tbody>
           </table>
+        </div>
+
+        <h4>Module Method Call Costs</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Module Rarity</th>
+              <th>FE per Method Call</th>
+              <th>Example Methods</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><span class="badge badge-rare">Rare</span></td>
+              <td>10,000 FE</td>
+              <td>dealDamage(), freeze(), poison(), raycast()</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-epic">Epic</span></td>
+              <td>100,000 FE</td>
+              <td>burn(), wither(), heal(), createShield(), chainLightning()</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-legendary">Legendary</span></td>
+              <td>1,000,000 FE</td>
+              <td>explode(), teleport(), reflectDamage()</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-artifact">Artifact</span></td>
+              <td>10,000,000 FE</td>
+              <td>Unique artifact-only methods</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-success">
+          <i class="fas fa-shield-alt"></i>
+          <div>
+            <strong>Natural Protection:</strong> This FE cost system naturally prevents infinite loops and abuse. Code runs out of FE before causing problems.
+          </div>
         </div>
 
         <h3>Modification Throughput Requirements</h3>
@@ -2689,12 +2676,12 @@ end</code></pre>
     <div class="section-content">
       <div class="card">
         <h3>Complete Circuit Programming Examples</h3>
-        <p>These examples demonstrate computational circuit programming for pocket computers and turtles. Each example uses module-based programming with baseVal(), control flow modules, and compiles to cartridges.</p>
+        <p>These examples demonstrate unrestricted Lua programming with action modules. Write any code you want, call module methods for effects, and circuits execute with FE costs.</p>
 
         <div class="alert alert-info">
           <i class="fas fa-lightbulb"></i>
           <div>
-            <strong>Key Concepts:</strong> Circuits use assignCircuit() to create programs, baseVal() for random values, control flow modules (for loops, branches, etc.), and compile() to transfer modules to cartridges. Modules are consumed on compile.
+            <strong>Key Concepts:</strong> Write unrestricted Lua code. Call module methods (burn(), explode(), etc.) for actions. Each method call costs FE based on module rarity. Circuit execution drains 5% FE per tick. compile() transfers modules to cartridges.
           </div>
         </div>
 
@@ -2710,246 +2697,232 @@ end</code></pre>
           </div>
         </div>
 
-        <h3>1. Basic Turtle Mining Circuit</h3>
-        <p>A simple mining circuit for turtles demonstrating module usage, for loops, and baseVal() random values.</p>
-        <pre><code class="language-lua">-- compile_mining.lua
--- COMPILATION SCRIPT: Basic turtle mining circuit using For Loop Module
--- This is a TURTLE (not pocket computer) - Right-click to open coding interface
+        <h3>1. Basic Combat Spell Circuit</h3>
+        <p>A simple combat spell for pocket tablets demonstrating unrestricted Lua and module methods.</p>
+        <pre><code class="language-lua">-- compile_fireball.lua
+-- COMPILATION SCRIPT: Basic fireball spell
+-- This is a POCKET TABLET - Shift+Right Click to open coding interface
 
--- Insert empty Logic Cartridge into turtle's cartridge slot 1
+-- Modules installed: burn (Epic), explode (Legendary), dealDamage (Rare)
 
--- Assign Circuit to cartridge in slot 1
-local miningCircuit = assignCircuit("Strip Mining", this.inv(1))
+-- Create projectile circuit
+local circuit = Projectile.new("fireball")
 
--- Define random values using baseVal()
--- NO hard-coded values allowed! (local x = 200 will be removed by backend)
-local mineDepth = miningCircuit:baseVal()  -- Random 1-10 (if Legendary modules)
-local mineWidth = miningCircuit:baseVal()  -- Random 1-10
-local delay = miningCircuit:baseVal()      -- Random 1-10
+-- Define parameters (UNRESTRICTED LUA - any values!)
+local baseDamage = 50
+local burnDuration = 8
+local explosionRadius = 4
 
--- Outer loop: mine forward mineDepth blocks
--- Requires "For Loop Module" installed in device
-miningCircuit:addForLoop(mineDepth, function()
-  -- Dig forward
-  miningCircuit:turtleDigForward()
-  miningCircuit:turtleMove()
+-- Add crit chance logic (normal Lua!)
+local critChance = 0.25
+if math.random() < critChance then
+  baseDamage = baseDamage * 1.5
+  print("Critical hit prepared!")
+end
 
-  -- Mine left and right for width
-  miningCircuit:addForLoop(mineWidth, function()
-    miningCircuit:turtleTurnLeft()
-    miningCircuit:turtleDigForward()
-    miningCircuit:turtleMove()
-    miningCircuit:turtleTurnRight()
-    miningCircuit:turtleTurnRight()
-    miningCircuit:turtleDigForward()
-    miningCircuit:turtleMove()
-    miningCircuit:turtleTurnLeft()
-  end)
+-- Define impact behavior
+circuit:onImpact(function(target)
+  -- Call module methods (each costs FE)
+  dealDamage(target, baseDamage)  -- Rare: 10k FE
+  burn(target, burnDuration)       -- Epic: 100k FE
+  explode(explosionRadius)         -- Legendary: 1M FE
 
-  -- Small delay to prevent server lag
-  miningCircuit:sleep(delay / 10)  -- Convert to seconds (0.1-1.0s)
+  print("Fireball hit " .. target.name)
 end)
 
--- Compile the Circuit
--- Backend Java will:
--- 1. Tokenize Lua code
--- 2. Remove hard-coded values (local x = 200)
--- 3. Validate only mod methods used
--- 4. Transfer used modules from device to cartridge (NBT transfer)
--- 5. Save validated code to cartridge
-local success = miningCircuit:compile()
+-- Compile to cartridge slot 1
+local success = circuit:compile("Fireball", 1)
 
 if success then
-  print("Strip Mining circuit compiled!")
-  print("Depth: " .. mineDepth .. " blocks")
-  print("Width: " .. mineWidth .. " blocks per row")
-  print("Modules consumed: 2x For Loop, " .. (mineDepth + mineWidth + delay) .. "x baseVal()")
+  print("Fireball circuit compiled!")
+  print("Damage: " .. baseDamage)
+  print("Burn: " .. burnDuration .. "s")
+  print("Explosion radius: " .. explosionRadius)
+  print("FE cost per cast: ~1.11M FE + tick costs")
 else
-  print("Compilation failed - check module availability")
+  print("Compilation failed - check modules")
 end</code></pre>
 
         <h4>Expected Output:</h4>
-        <pre><code>Strip Mining circuit compiled!
-Depth: 8 blocks
-Width: 6 blocks per row
-Modules consumed: 2x For Loop, 17x baseVal()</code></pre>
+        <pre><code>Fireball circuit compiled!
+Damage: 50
+Burn: 8s
+Explosion radius: 4
+FE cost per cast: ~1.11M FE + tick costs</code></pre>
 
-        <h3>2. Mathematical Calculation Circuit</h3>
-        <p>Pocket computer circuit using math modules (add, multiply, exponent, sqrt) for complex calculations.</p>
-        <pre><code class="language-lua">-- math_circuit.lua
--- Demonstrates math module usage for computational circuits
+        <h3>2. Adaptive Healing Circuit</h3>
+        <p>Instant spell that adapts healing based on caster's current health using unrestricted Lua logic.</p>
+        <pre><code class="language-lua">-- compile_heal.lua
+-- Demonstrates conditional logic with module methods
 
--- Open pocket computer interface (Shift+Right Click)
--- Insert Logic Cartridge into inventory slot 2
+-- Shift+Right Click to open pocket tablet interface
+-- Modules installed: heal (Epic), createShield (Epic)
 
--- Assign Circuit to cartridge in slot 2
-local mathCircuit = assignCircuit("Advanced Calculator", this.inv(2))
+-- Create instant circuit
+local circuit = Instant.new("adaptive_heal")
 
--- Define base values
-local baseNum = mathCircuit:baseVal()     -- Random 1-10 (Legendary tier)
-local multiplier = mathCircuit:baseVal()  -- Random 1-10
-local power = mathCircuit:baseVal()       -- Random 1-10
+-- Define healing parameters (unrestricted values!)
+local baseHeal = 20
+local emergencyHealMultiplier = 2.5
+local shieldDuration = 10
 
--- Use Math Modules for calculations
--- Requires: Multiply Module, Exponent Module, Sqrt Module, Add Module
+-- Define cast behavior
+circuit:onCast(function(caster)
+  local healthPercent = (caster.health / caster.maxHealth) * 100
 
--- Step 1: Multiply baseNum by multiplier
--- Uses "Multiply Module"
-local step1 = mathCircuit:multiply(baseNum, multiplier)
+  print("Current health: " .. math.floor(healthPercent) .. "%")
 
--- Step 2: Raise result to power
--- Uses "Exponent Module"
-local step2 = mathCircuit:exponent(step1, power)
+  -- Adaptive healing logic (normal Lua!)
+  if healthPercent < 30 then
+    -- Emergency: Big heal + shield
+    local emergencyHeal = baseHeal * emergencyHealMultiplier
+    heal(caster, emergencyHeal)     -- Epic: 100k FE
+    createShield(shieldDuration)    -- Epic: 100k FE
+    print("EMERGENCY HEAL: +" .. emergencyHeal .. " HP + Shield!")
 
--- Step 3: Take square root to normalize
--- Uses "Sqrt Module"
-local step3 = mathCircuit:sqrt(step2)
+  elseif healthPercent < 70 then
+    -- Standard heal
+    heal(caster, baseHeal)  -- Epic: 100k FE
+    print("Standard heal: +" .. baseHeal .. " HP")
 
--- Step 4: Add base number back
--- Uses "Add Module"
-local result = mathCircuit:add(step3, baseNum)
-
--- Store result in variable for circuit use
-mathCircuit:storeResult("finalValue", result)
-
--- Print calculation steps
-mathCircuit:print("=== Advanced Calculator ===")
-mathCircuit:print("Base: " .. baseNum)
-mathCircuit:print("Multiplier: " .. multiplier)
-mathCircuit:print("Power: " .. power)
-mathCircuit:print("Formula: sqrt((base * mult)^power) + base")
-mathCircuit:print("Result: " .. result)
-
--- Compile to cartridge
-local success = mathCircuit:compile()
-
-if success then
-  print("Advanced Calculator compiled!")
-  print("Modules consumed: Multiply x1, Exponent x1, Sqrt x1, Add x1")
-  print("BaseVal() calls: 3")
-else
-  print("Compilation failed - missing math modules")
-end</code></pre>
-
-        <h3>3. Conditional Turtle Circuit</h3>
-        <p>Demonstrates conditional logic using Branch module - turtle behavior changes based on fuel level.</p>
-        <pre><code class="language-lua">-- conditional_turtle.lua
--- Turtle circuit with conditional logic using Branch Module
-
--- Assign Circuit to cartridge in slot 3
-local fuelCircuit = assignCircuit("Smart Fuel Management", this.inv(3))
-
--- Define threshold values
-local fuelThreshold = fuelCircuit:baseVal()  -- Random 1-10
-local miningDepth = fuelCircuit:baseVal()    -- Random 1-10
-local refuelAmount = fuelCircuit:baseVal()   -- Random 1-10
-
--- Main logic loop
-fuelCircuit:addForLoop(miningDepth, function()
-  -- Check current fuel level
-  local currentFuel = fuelCircuit:turtleGetFuelLevel()
-
-  -- Branch Module: Conditional logic
-  -- Requires "Branch Module" installed in device
-  fuelCircuit:addBranch(currentFuel < (fuelThreshold * 100), function()
-    -- If fuel < threshold: Refuel and wait
-    fuelCircuit:print("LOW FUEL - Refueling...")
-    fuelCircuit:turtleSelectSlot(1)  -- Assume coal in slot 1
-    fuelCircuit:turtleRefuel(refuelAmount)
-    fuelCircuit:sleep(1)  -- Wait 1 second
-  end, function()
-    -- Else: Continue mining
-    fuelCircuit:turtleDigForward()
-    fuelCircuit:turtleMove()
-    fuelCircuit:turtleDigUp()
-    fuelCircuit:turtleDigDown()
-  end)
-
-  -- Always print status
-  fuelCircuit:print("Fuel: " .. currentFuel .. " | Threshold: " .. (fuelThreshold * 100))
+  else
+    -- Just shield at high health
+    createShield(shieldDuration / 2)  -- Epic: 100k FE
+    print("Shield only (health good)")
+  end
 end)
 
--- Compile to cartridge
-local success = fuelCircuit:compile()
+-- Compile to cartridge slot 2
+local success = circuit:compile("Adaptive Heal", 2)
 
 if success then
-  print("Smart Fuel Management compiled!")
-  print("Fuel threshold: " .. (fuelThreshold * 100))
-  print("Mining depth: " .. miningDepth)
-  print("Refuel amount: " .. refuelAmount)
-  print("Modules consumed: For Loop x1, Branch x1, baseVal() x3")
+  print("Adaptive Heal compiled!")
+  print("Base heal: " .. baseHeal .. " HP")
+  print("Emergency heal: " .. (baseHeal * emergencyHealMultiplier) .. " HP")
+  print("Shield duration: " .. shieldDuration .. "s")
+  print("FE cost: 100k-200k depending on health")
 else
-  print("Compilation failed - missing Branch or For Loop module")
+  print("Compilation failed - missing modules")
 end</code></pre>
 
-        <h3>4. Advanced While Loop Circuit (Legendary)</h3>
-        <p>Complex circuit using While Loop Module (Legendary-tier only) for inventory management and quarry operations.</p>
-        <pre><code class="language-lua">-- while_loop_quarry.lua
--- Advanced quarry circuit using While Loop Module (Legendary tier)
+        <h3>3. Area-of-Effect Spell with Loops</h3>
+        <p>Demonstrates loop-based spell that hits multiple enemies. Shows natural FE prevention of infinite loops.</p>
+        <pre><code class="language-lua">-- compile_aoe.lua
+-- Area spell that damages all nearby enemies
+-- Demonstrates: loops, module methods, FE cost management
 
--- Assign Circuit to cartridge in slot 4
-local quarryCircuit = assignCircuit("Auto Quarry", this.inv(4))
+-- Modules installed: findEntitiesInRadius (Rare), dealDamage (Rare), freeze (Rare)
 
--- Define quarry parameters
-local quarrySize = quarryCircuit:baseVal()      -- Random 1-10
-local maxDepth = quarryCircuit:baseVal()        -- Random 1-10
-local minFuelLevel = quarryCircuit:baseVal()    -- Random 1-10
+-- Create area circuit
+local circuit = Area.new("frost_nova")
 
--- While Loop: Continue quarrying while inventory not full
--- Requires "While Loop Module" (Legendary tier)
--- This module is VERY expensive and only available at Legendary tier
-quarryCircuit:addWhileLoop(function()
-  -- Condition: Inventory not full AND depth < max
-  local invFull = quarryCircuit:turtleInventoryFull()
-  local currentDepth = quarryCircuit:getVariable("depth") or 0
-  return (not invFull) and (currentDepth < (maxDepth * 10))
-end, function()
-  -- Loop body: Dig layer by layer
+-- Define parameters (unrestricted!)
+local radius = 15
+local damagePerEnemy = 40
+local freezeDuration = 5
 
-  -- Nested For Loop: Dig quarry size x quarry size
-  quarryCircuit:addForLoop(quarrySize, function()
-    quarryCircuit:addForLoop(quarrySize, function()
-      -- Dig down
-      quarryCircuit:turtleDigDown()
-      quarryCircuit:turtleDown()
+-- Define cast behavior
+circuit:onCast(function(caster)
+  -- Get all entities in radius (Rare: 10k FE)
+  local entities = findEntitiesInRadius(radius)
 
-      -- Check fuel before continuing
-      quarryCircuit:addBranch(quarryCircuit:turtleGetFuelLevel() < (minFuelLevel * 100), function()
-        quarryCircuit:print("CRITICAL FUEL - Returning to surface")
-        quarryCircuit:goto("RETURN_HOME")  -- Jump to label
-      end, function()
-        -- Continue mining
-        quarryCircuit:turtleDigForward()
-        quarryCircuit:turtleMove()
-      end)
-    end)
+  print("Found " .. #entities .. " entities in radius")
 
-    -- Turn for next row
-    quarryCircuit:turtleTurnRight()
-    quarryCircuit:turtleMove()
-    quarryCircuit:turtleTurnLeft()
-  end)
+  local hitCount = 0
 
-  -- Increment depth counter
-  local d = quarryCircuit:getVariable("depth") or 0
-  quarryCircuit:setVariable("depth", d + 1)
+  -- Loop through enemies (normal Lua!)
+  for i, entity in ipairs(entities) do
+    -- Filter for hostile mobs only
+    if entity.type == "mob" and entity.hostile then
+      -- Damage each enemy (Rare: 10k FE per call)
+      dealDamage(entity, damagePerEnemy)
+
+      -- 50% chance to freeze (Rare: 10k FE per call)
+      if math.random() > 0.5 then
+        freeze(entity, freezeDuration)
+        print("  Froze " .. entity.name)
+      end
+
+      hitCount = hitCount + 1
+    end
+
+    -- Each iteration costs ~20k FE (damage + possible freeze)
+    -- With 1M FE capacity: max ~50 enemies before running out
+    -- Natural protection against huge entity lists!
+  end
+
+  print("Damaged " .. hitCount .. " enemies")
 end)
 
--- Label for return home
-quarryCircuit:addLabel("RETURN_HOME")
-quarryCircuit:print("Quarry complete or interrupted - returning home")
-
--- Compile to cartridge (EXPENSIVE - Legendary modules required)
-local success = quarryCircuit:compile()
+-- Compile to cartridge slot 3
+local success = circuit:compile("Frost Nova", 3)
 
 if success then
-  print("Auto Quarry compiled!")
-  print("Quarry size: " .. quarrySize .. "x" .. quarrySize)
-  print("Max depth: " .. (maxDepth * 10))
-  print("Modules consumed: While Loop x1, For Loop x2, Branch x1, Label x1, Goto x1")
-  print("WARNING: This circuit is EXTREMELY expensive due to While Loop Module")
+  print("Frost Nova compiled!")
+  print("Radius: " .. radius .. " blocks")
+  print("Damage: " .. damagePerEnemy .. " per enemy")
+  print("Freeze: " .. freezeDuration .. "s (50% chance)")
+  print("FE cost: 10k + 10-20k per enemy hit")
+  print("Natural limit: ~50 enemies max before FE runs out")
 else
-  print("Compilation failed - While Loop Module requires Legendary tier device")
+  print("Compilation failed - missing modules")
+end</code></pre>
+
+        <h3>4. Teleport Combo Spell (Legendary)</h3>
+        <p>Advanced spell combining teleport with damage. Shows expensive Legendary module usage.</p>
+        <pre><code class="language-lua">-- compile_teleport_strike.lua
+-- Legendary spell: Teleport behind target and strike
+-- Demonstrates: expensive modules, multi-step combos
+
+-- Modules installed: raycast (Rare), teleport (Legendary), dealDamage (Rare), burn (Epic)
+
+-- Create instant circuit
+local circuit = Instant.new("teleport_strike")
+
+-- Define parameters
+local teleportDistance = 3  -- Behind target
+local baseDamage = 100
+local burnDuration = 10
+
+-- Define cast behavior
+circuit:onCast(function(caster)
+  -- Find target in front (Rare: 10k FE)
+  local target = raycast(30)
+
+  if not target then
+    print("No target found!")
+    return
+  end
+
+  -- Calculate position behind target (normal Lua math!)
+  local behindX = target.x + (target.lookX * -teleportDistance)
+  local behindY = target.y
+  local behindZ = target.z + (target.lookZ * -teleportDistance)
+
+  -- Teleport to position (Legendary: 1M FE!!!)
+  teleport({x = behindX, y = behindY, z = behindZ})
+
+  -- Strike from behind!
+  dealDamage(target, baseDamage)  -- Rare: 10k FE
+  burn(target, burnDuration)       -- Epic: 100k FE
+
+  print("Teleport strike on " .. target.name .. "!")
+  print("Damage: " .. baseDamage)
+end)
+
+-- Compile to cartridge slot 4
+local success = circuit:compile("Teleport Strike", 4)
+
+if success then
+  print("Teleport Strike compiled!")
+  print("Distance: " .. teleportDistance .. " blocks behind target")
+  print("Damage: " .. baseDamage)
+  print("Burn: " .. burnDuration .. "s")
+  print()
+  print("FE cost: ~1.12M FE (Legendary teleport is EXPENSIVE!)")
+  print("Required: 1M+ FE capacity recommended")
+else
+  print("Compilation failed - missing Legendary modules")
 end</code></pre>
 
         <h3>5. Complete Cartridge Management</h3>
@@ -2966,18 +2939,19 @@ print("---")
 
 local farmCircuit = assignCircuit("Auto Harvester", this.inv(1))
 
--- Define farming parameters
-local farmSize = farmCircuit:baseVal()   -- Random 1-10
-local cropDelay = farmCircuit:baseVal()  -- Random 1-10
+-- Modules: heal (Epic), burn (Epic), dealDamage (Rare), findEntitiesInRadius (Rare)
 
--- Build farming logic
-farmCircuit:addForLoop(farmSize, function()
-  farmCircuit:addForLoop(farmSize, function()
-    farmCircuit:turtleDigDown()      -- Harvest crop
-    farmCircuit:turtlePlaceDown()    -- Replant
-    farmCircuit:turtleMove()
-    farmCircuit:sleep(cropDelay / 10)
-  end)
+local circuit = Area.new("ultimate")
+
+circuit:onCast(function(caster)
+  local enemies = findEntitiesInRadius(10)  -- Rare: 10k FE
+
+  for _, enemy in ipairs(enemies) do
+    dealDamage(enemy, 50)  -- Rare: 10k FE per enemy
+    burn(enemy, 5)         -- Epic: 100k FE per enemy
+  end
+
+  heal(caster, 20)  -- Epic: 100k FE
 end)
 
 -- Compile: Modules transferred from device to cartridge
