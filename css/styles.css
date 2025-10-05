@@ -460,6 +460,28 @@
         border-radius: 8px;
         display: block;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .mobile-toggle.active {
+        transform: translateX(calc(85vw - 2rem));
+      }
+
+      .mobile-toggle .fa-bars {
+        display: block;
+      }
+
+      .mobile-toggle .fa-times {
+        display: none;
+      }
+
+      .mobile-toggle.active .fa-bars {
+        display: none;
+      }
+
+      .mobile-toggle.active .fa-times {
+        display: block;
       }
 
       .section-header h2 {
@@ -494,7 +516,14 @@
 
       pre {
         font-size: 0.75rem;
-        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-x: visible;
+      }
+
+      pre code {
+        white-space: pre-wrap;
+        word-break: break-word;
       }
 
       code {
@@ -577,6 +606,13 @@
 
       pre {
         font-size: 0.7rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      pre code {
+        white-space: pre-wrap;
+        word-break: break-word;
       }
 
       .mod-grid {
@@ -598,8 +634,11 @@
       }
     }
 
-    .mobile-toggle {
-      display: none;
+    /* Hide mobile toggle on desktop */
+    @media (min-width: 769px) {
+      .mobile-toggle {
+        display: none;
+      }
     }
 
     /* Make tables scrollable on mobile */

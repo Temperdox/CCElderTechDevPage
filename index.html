@@ -15,8 +15,9 @@
 </head>
 <body>
 
-<button class="mobile-toggle" onclick="toggleSidebar()">
+<button class="mobile-toggle" id="mobileToggle" onclick="toggleSidebar()">
   <i class="fas fa-bars"></i>
+  <i class="fas fa-times"></i>
 </button>
 
 <div class="sidebar" id="sidebar">
@@ -29,7 +30,7 @@
     <li><a href="#terminology"><i class="fas fa-list"></i> Terminology</a></li>
     <li><a href="#core-systems"><i class="fas fa-cogs"></i> Core Systems</a></li>
     <li><a href="#cc-tweaked"><i class="fas fa-laptop-code"></i> CC:Tweaked APIs</a></li>
-    <li><a href="#modification-system"><i class="fas fa-project-diagram"></i> Modification System</a></li>
+    <li><a href="#modification-system"><i class="fas fa-project-diagram"></i> Module & Circuit System</a></li>
     <li><a href="#crafting-recipes"><i class="fas fa-hammer"></i> Crafting Recipes</a></li>
     <li><a href="#blueprints"><i class="fas fa-file-code"></i> Blueprints</a></li>
     <li><a href="#durability"><i class="fas fa-heart-broken"></i> Durability</a></li>
@@ -98,54 +99,56 @@
         </ol>
 
         <h4>Device Tiers</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Tier</th>
-              <th>Resources Required</th>
-              <th>Module Slots</th>
-              <th>Cartridge Slots</th>
-              <th>baseVal() Cap</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Basic</span></td>
-              <td>Pocket Computer + Iron</td>
-              <td>4</td>
-              <td>3</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Advanced</span></td>
-              <td>Basic + Cerulite</td>
-              <td>8</td>
-              <td>6</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Elite</span></td>
-              <td>Advanced + Chronite</td>
-              <td>12</td>
-              <td>9</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Master</span></td>
-              <td>Elite + Muon Crystals</td>
-              <td>16</td>
-              <td>12</td>
-              <td>500</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-artifact">Legendary</span></td>
-              <td>Master + Neutrino Cores</td>
-              <td>20</td>
-              <td>15</td>
-              <td>1000</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Resources Required</th>
+                <th>Module Slots</th>
+                <th>Cartridge Slots</th>
+                <th>baseVal() Cap</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Basic</span></td>
+                <td>Pocket Computer + Iron</td>
+                <td>4</td>
+                <td>3</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Advanced</span></td>
+                <td>Basic + Cerulite</td>
+                <td>8</td>
+                <td>6</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Elite</span></td>
+                <td>Advanced + Chronite</td>
+                <td>12</td>
+                <td>9</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legendary">Master</span></td>
+                <td>Elite + Muon Crystals</td>
+                <td>16</td>
+                <td>12</td>
+                <td>500</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-artifact">Legendary</span></td>
+                <td>Master + Neutrino Cores</td>
+                <td>20</td>
+                <td>15</td>
+                <td>1000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h4>Progression Summary</h4>
         <ol>
@@ -855,30 +858,32 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
         <p>Wireless FE/RF power transfer for turtles and devices. Essential for powering circuit execution in remote locations.</p>
 
         <h4>Block Types</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Block</th>
-              <th>Purpose</th>
-              <th>Placement</th>
-              <th>Max Networks</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Quantum Energy Source</strong></td>
-              <td>Connects to FE/RF cables, creates power networks</td>
-              <td>Adjacent to energy source (cables, generators, batteries)</td>
-              <td>8 networks per source</td>
-            </tr>
-            <tr>
-              <td><strong>Quantum Energy Point</strong></td>
-              <td>Receives power wirelessly, placed in turtle peripheral slots</td>
-              <td>Turtle peripheral slot (1 of 4 slots)</td>
-              <td>1 network per point</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Block</th>
+                <th>Purpose</th>
+                <th>Placement</th>
+                <th>Max Networks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Quantum Energy Source</strong></td>
+                <td>Connects to FE/RF cables, creates power networks</td>
+                <td>Adjacent to energy source (cables, generators, batteries)</td>
+                <td>8 networks per source</td>
+              </tr>
+              <tr>
+                <td><strong>Quantum Energy Point</strong></td>
+                <td>Receives power wirelessly, placed in turtle peripheral slots</td>
+                <td>Turtle peripheral slot (1 of 4 slots)</td>
+                <td>1 network per point</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h4>Network Pairing Process</h4>
         <ol>
@@ -920,88 +925,92 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
         </div>
 
         <h4>Energy Source Tiers</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Tier</th>
-              <th>Max FE/t Transfer</th>
-              <th>Max Simultaneous Points</th>
-              <th>Crafting Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Basic</span></td>
-              <td>1,000 FE/t</td>
-              <td>4 points</td>
-              <td>Iron + Cerulite + Redstone</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-uncommon">Advanced</span></td>
-              <td>10,000 FE/t</td>
-              <td>8 points</td>
-              <td>Gold + Chronite + Ender Pearl</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Elite</span></td>
-              <td>100,000 FE/t</td>
-              <td>16 points</td>
-              <td>Diamond + Muon Crystal + Eye of Ender</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Master</span></td>
-              <td>1,000,000 FE/t</td>
-              <td>32 points</td>
-              <td>Netherite + Neutrino Core + Nether Star</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Max FE/t Transfer</th>
+                <th>Max Simultaneous Points</th>
+                <th>Crafting Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Basic</span></td>
+                <td>1,000 FE/t</td>
+                <td>4 points</td>
+                <td>Iron + Cerulite + Redstone</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-uncommon">Advanced</span></td>
+                <td>10,000 FE/t</td>
+                <td>8 points</td>
+                <td>Gold + Chronite + Ender Pearl</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Elite</span></td>
+                <td>100,000 FE/t</td>
+                <td>16 points</td>
+                <td>Diamond + Muon Crystal + Eye of Ender</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Master</span></td>
+                <td>1,000,000 FE/t</td>
+                <td>32 points</td>
+                <td>Netherite + Neutrino Core + Nether Star</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3>Portable Battery System (Early Game)</h3>
         <p>Alternative to Quantum Energy Links for players without FE infrastructure. <strong>WARNING: All batteries suffer from passive energy drain.</strong></p>
 
         <h4>Battery Tiers</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Battery</th>
-              <th>Capacity</th>
-              <th>Drain Rate</th>
-              <th>Drain per Tick</th>
-              <th>Full Drain Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Basic Battery</span></td>
-              <td>100,000 FE</td>
-              <td>0.01% per tick</td>
-              <td>10 FE/t</td>
-              <td>~8 minutes</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-uncommon">Advanced Battery</span></td>
-              <td>1,000,000 FE</td>
-              <td>0.01% per tick</td>
-              <td>100 FE/t</td>
-              <td>~8 minutes</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Elite Battery</span></td>
-              <td>10,000,000 FE</td>
-              <td>0.01% per tick</td>
-              <td>1,000 FE/t</td>
-              <td>~8 minutes</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Master Battery</span></td>
-              <td>100,000,000 FE</td>
-              <td>0.01% per tick</td>
-              <td>10,000 FE/t</td>
-              <td>~8 minutes</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Battery</th>
+                <th>Capacity</th>
+                <th>Drain Rate</th>
+                <th>Drain per Tick</th>
+                <th>Full Drain Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Basic Battery</span></td>
+                <td>100,000 FE</td>
+                <td>0.01% per tick</td>
+                <td>10 FE/t</td>
+                <td>~8 minutes</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-uncommon">Advanced Battery</span></td>
+                <td>1,000,000 FE</td>
+                <td>0.01% per tick</td>
+                <td>100 FE/t</td>
+                <td>~8 minutes</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Elite Battery</span></td>
+                <td>10,000,000 FE</td>
+                <td>0.01% per tick</td>
+                <td>1,000 FE/t</td>
+                <td>~8 minutes</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Master Battery</span></td>
+                <td>100,000,000 FE</td>
+                <td>0.01% per tick</td>
+                <td>10,000 FE/t</td>
+                <td>~8 minutes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="alert alert-danger">
           <i class="fas fa-exclamation-triangle"></i>
@@ -1019,42 +1028,44 @@ print("Cartridge destroyed, modules returned to inventory")</code></pre>
         </ul>
 
         <h4>Battery vs Quantum Energy Link</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Battery</th>
-              <th>Quantum Energy Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Cost</td>
-              <td>Cheap (early game)</td>
-              <td>Expensive (mid-late game)</td>
-            </tr>
-            <tr>
-              <td>Setup</td>
-              <td>None (just insert)</td>
-              <td>Requires network pairing</td>
-            </tr>
-            <tr>
-              <td>Energy Drain</td>
-              <td>0.01% per tick (passive)</td>
-              <td>None (infinite while source has FE)</td>
-            </tr>
-            <tr>
-              <td>Recharge</td>
-              <td>Manual (remove, charge, replace)</td>
-              <td>Automatic (continuous from source)</td>
-            </tr>
-            <tr>
-              <td>Best For</td>
-              <td>Short-term tasks, early game</td>
-              <td>Long-term automation, late game</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Battery</th>
+                <th>Quantum Energy Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cost</td>
+                <td>Cheap (early game)</td>
+                <td>Expensive (mid-late game)</td>
+              </tr>
+              <tr>
+                <td>Setup</td>
+                <td>None (just insert)</td>
+                <td>Requires network pairing</td>
+              </tr>
+              <tr>
+                <td>Energy Drain</td>
+                <td>0.01% per tick (passive)</td>
+                <td>None (infinite while source has FE)</td>
+              </tr>
+              <tr>
+                <td>Recharge</td>
+                <td>Manual (remove, charge, replace)</td>
+                <td>Automatic (continuous from source)</td>
+              </tr>
+              <tr>
+                <td>Best For</td>
+                <td>Short-term tasks, early game</td>
+                <td>Long-term automation, late game</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -1290,101 +1301,97 @@ power.clearAlerts() --> boolean</code></pre>
 
   <div id="modification-system" class="section">
     <div class="section-header" onclick="toggleSection(this)">
-      <h2><i class="fas fa-project-diagram"></i> Visual Programming Modification System</h2>
+      <h2><i class="fas fa-project-diagram"></i> Module & Circuit System</h2>
       <i class="fas fa-chevron-down toggle-icon"></i>
     </div>
     <div class="section-content">
       <div class="card">
         <h3>Overview</h3>
-        <p>The circuit logic chain system replaces traditional "socket X modules" with a flexible <strong>visual programming interface</strong>. Players place module cards in a 9×6 grid and connect them with directional arrows to create complex circuit behaviors. When compiled, modules bind to the Lua script and create an executable circuit.</p>
+        <p>The module system allows you to install modules into devices at the workbench, then write Lua circuits that use those modules. When you compile a circuit to a cartridge, the modules are transferred from the device to the cartridge, binding them to your circuit permanently.</p>
 
         <div class="alert alert-info">
           <i class="fas fa-lightbulb"></i>
           <div>
-            <strong>Example Build:</strong> Create fireball circuit with damage = x^y where x=7, y=3 → circuit deals 343 damage. Each compile randomizes base values. Bind to key "R" for instant casting.
+            <strong>Example Build:</strong> Install math modules (Base Value, Power, etc.) into your tablet at the workbench. Write a fireball circuit with damage = x^y where x=7, y=3. Compile to cartridge → modules transfer and circuit deals 343 damage. Bind to key "R" for instant casting.
           </div>
         </div>
 
         <h3>How It Works</h3>
         <ol>
-          <li><strong>Install Modules:</strong> Place modules into tablet's right-side GUI (shows as available/uncompiled)</li>
-          <li><strong>Design Logic Chain:</strong> Arrange modules in 9×6 grid at workbench, connect with arrows</li>
-          <li><strong>Write Lua Script:</strong> Code circuit behavior in tablet's left terminal (normal CC:Tweaked coding)</li>
-          <li><strong>Compile:</strong> Run compile command → Modules disappear from right GUI → Bind to script</li>
-          <li><strong>Execute:</strong> Compiled circuit stored in tablet, executable via keybind or direct call</li>
+          <li><strong>Install Modules:</strong> At the workbench, install modules from your inventory into the device's module slots</li>
+          <li><strong>Write Lua Script:</strong> Code circuit behavior in the device using installed modules (normal CC:Tweaked coding)</li>
+          <li><strong>Compile to Cartridge:</strong> Run compile command → Modules transfer from device to cartridge → Circuit becomes executable</li>
+          <li><strong>Execute:</strong> Compiled circuit stored in cartridge, executable via keybind or direct call</li>
+          <li><strong>Recover Modules:</strong> Decompile cartridge to get modules back (destroys cartridge)</li>
         </ol>
 
-        <h3>Interactive Logic Chain Grid</h3>
-        <p><strong>Hover over cards to see details. Example shows Exponential Damage Fireball.</strong></p>
-
-        <div class="mod-grid-container">
-          <div class="mod-grid" id="modGrid"></div>
-        </div>
-
-        <h3>Flow Diagram: Data Flow Example</h3>
+        <h3>Module & Circuit Flow</h3>
+        <p><strong>This diagram shows how modules flow through the system from installation to execution.</strong></p>
         <div class="diagram-container" id="flowDiagram"></div>
 
         <h3>Module Slot Limits by Tablet Tier</h3>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Tablet Tier</th>
-            <th>Basic Modules</th>
-            <th>Uncommon</th>
-            <th>Rare</th>
-            <th>Epic</th>
-            <th>Legendary</th>
-            <th>FE Capacity</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="badge bg-secondary">Basic Tablet</span></td>
-            <td>2</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>10k FE</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-rare">Advanced Tablet</span></td>
-            <td>4</td>
-            <td>2</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>50k FE</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-epic">Elite Tablet</span></td>
-            <td>6</td>
-            <td>3</td>
-            <td>2</td>
-            <td>0</td>
-            <td>0</td>
-            <td>250k FE</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-legendary">Master Tablet</span></td>
-            <td>8</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
-            <td>0</td>
-            <td>1M FE</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-artifact">Artifact Tablet</span></td>
-            <td>10</td>
-            <td>5</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
-            <td>10M FE</td>
-          </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Tablet Tier</th>
+              <th>Basic Modules</th>
+              <th>Uncommon</th>
+              <th>Rare</th>
+              <th>Epic</th>
+              <th>Legendary</th>
+              <th>FE Capacity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><span class="badge bg-secondary">Basic Tablet</span></td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>10k FE</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-rare">Advanced Tablet</span></td>
+              <td>4</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>50k FE</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-epic">Elite Tablet</span></td>
+              <td>6</td>
+              <td>3</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>250k FE</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-legendary">Master Tablet</span></td>
+              <td>8</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1M FE</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-artifact">Artifact Tablet</span></td>
+              <td>10</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>10M FE</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="alert alert-warning">
           <i class="fas fa-exclamation-triangle"></i>
@@ -1582,48 +1589,50 @@ circuit:addEffect(impactEffect)
 circuit:compile("Fireball", 1)  -- Name: "Fireball", Cartridge slot: 1</code></pre>
 
         <h4>Value System: baseVal() vs Predetermined</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Module Rarity</th>
-              <th>baseVal() Cap</th>
-              <th>Predetermined Cap</th>
-              <th>FE Cost Multiplier</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Common</span></td>
-              <td>2</td>
-              <td>2</td>
-              <td>1.0x (cheap)</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Rare</span></td>
-              <td>5</td>
-              <td>5</td>
-              <td>1.5x</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Epic</span></td>
-              <td>7</td>
-              <td>7</td>
-              <td>2.5x</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Legendary</span></td>
-              <td>10</td>
-              <td>10</td>
-              <td>5.0x</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-artifact">Artifact/Relic</span></td>
-              <td>20</td>
-              <td>20</td>
-              <td>10.0x</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Module Rarity</th>
+                <th>baseVal() Cap</th>
+                <th>Predetermined Cap</th>
+                <th>FE Cost Multiplier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Common</span></td>
+                <td>2</td>
+                <td>2</td>
+                <td>1.0x (cheap)</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Rare</span></td>
+                <td>5</td>
+                <td>5</td>
+                <td>1.5x</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Epic</span></td>
+                <td>7</td>
+                <td>7</td>
+                <td>2.5x</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legendary">Legendary</span></td>
+                <td>10</td>
+                <td>10</td>
+                <td>5.0x</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-artifact">Artifact/Relic</span></td>
+                <td>20</td>
+                <td>20</td>
+                <td>10.0x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="alert alert-warning">
           <i class="fas fa-exclamation-triangle"></i>
@@ -1925,37 +1934,39 @@ end</code></pre>
         <p>All mod items (except Relics and Artifacts) have custom durability separate from Minecraft's system.</p>
 
         <h4>Durability Values by Rarity</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Rarity</th>
-              <th>Base Durability</th>
-              <th>Repair Cost Multiplier</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Common</span></td>
-              <td>500</td>
-              <td>1.0x</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Rare</span></td>
-              <td>1000</td>
-              <td>1.5x</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Epic</span></td>
-              <td>2500</td>
-              <td>3.0x</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Legendary</span></td>
-              <td>5000</td>
-              <td>6.0x</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Rarity</th>
+                <th>Base Durability</th>
+                <th>Repair Cost Multiplier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Common</span></td>
+                <td>500</td>
+                <td>1.0x</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Rare</span></td>
+                <td>1000</td>
+                <td>1.5x</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Epic</span></td>
+                <td>2500</td>
+                <td>3.0x</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legendary">Legendary</span></td>
+                <td>5000</td>
+                <td>6.0x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h4>Durability Loss</h4>
         <ul>
@@ -2028,60 +2039,62 @@ end</code></pre>
         </div>
 
         <h4>Crate Rarity & Spawn System</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Crate Rarity</th>
-              <th>Ruin Size</th>
-              <th>Min Crates</th>
-              <th>Max Crates</th>
-              <th>Extra Crate Chance</th>
-              <th>Loot Contents</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Common</span></td>
-              <td>Small (5x5x3)</td>
-              <td>1</td>
-              <td>5</td>
-              <td>70%</td>
-              <td>Basic Modules, Iron, Cerulite</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Uncommon</span></td>
-              <td>Medium (8x8x5)</td>
-              <td>1</td>
-              <td>4</td>
-              <td>50%</td>
-              <td>Math Modules, Cerulite Ingots</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Rare</span></td>
-              <td>Medium (10x10x5)</td>
-              <td>1</td>
-              <td>3</td>
-              <td>30%</td>
-              <td>Control Flow Modules, Chronite</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Epic</span></td>
-              <td>Large (15x15x8)</td>
-              <td>1</td>
-              <td>2</td>
-              <td>15%</td>
-              <td>Advanced Modules, Muon Crystals, Empty Cartridges</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-artifact">Legendary</span></td>
-              <td>Large (20x20x10)</td>
-              <td>1</td>
-              <td>1</td>
-              <td>0%</td>
-              <td>Relic Chips, Neutrino Cores, Artifact Fragments</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Crate Rarity</th>
+                <th>Ruin Size</th>
+                <th>Min Crates</th>
+                <th>Max Crates</th>
+                <th>Extra Crate Chance</th>
+                <th>Loot Contents</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Common</span></td>
+                <td>Small (5x5x3)</td>
+                <td>1</td>
+                <td>5</td>
+                <td>70%</td>
+                <td>Basic Modules, Iron, Cerulite</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Uncommon</span></td>
+                <td>Medium (8x8x5)</td>
+                <td>1</td>
+                <td>4</td>
+                <td>50%</td>
+                <td>Math Modules, Cerulite Ingots</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Rare</span></td>
+                <td>Medium (10x10x5)</td>
+                <td>1</td>
+                <td>3</td>
+                <td>30%</td>
+                <td>Control Flow Modules, Chronite</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legendary">Epic</span></td>
+                <td>Large (15x15x8)</td>
+                <td>1</td>
+                <td>2</td>
+                <td>15%</td>
+                <td>Advanced Modules, Muon Crystals, Empty Cartridges</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-artifact">Legendary</span></td>
+                <td>Large (20x20x10)</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0%</td>
+                <td>Relic Chips, Neutrino Cores, Artifact Fragments</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h4>Crate Spawn Mechanics</h4>
         <ul>
@@ -2119,36 +2132,38 @@ end</code></pre>
         <p>Use scanners to locate structures:</p>
 
         <h4>Scanner Tiers</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Scanner</th>
-              <th>Range</th>
-              <th>Cooldown</th>
-              <th>Daily Charges</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Basic Scanner</td>
-              <td>512 blocks</td>
-              <td>5 minutes</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <td>Advanced Scanner</td>
-              <td>1024 blocks</td>
-              <td>3 minutes</td>
-              <td>20</td>
-            </tr>
-            <tr>
-              <td>Pandora Lens</td>
-              <td>2048 blocks</td>
-              <td>1 minute</td>
-              <td>Unlimited</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Scanner</th>
+                <th>Range</th>
+                <th>Cooldown</th>
+                <th>Daily Charges</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic Scanner</td>
+                <td>512 blocks</td>
+                <td>5 minutes</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Advanced Scanner</td>
+                <td>1024 blocks</td>
+                <td>3 minutes</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>Pandora Lens</td>
+                <td>2048 blocks</td>
+                <td>1 minute</td>
+                <td>Unlimited</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h4>Scanner API Example</h4>
         <pre><code class="language-lua">local scanner = peripheral.find("relic_scanner")
@@ -2253,48 +2268,50 @@ print("Charges remaining: " .. charges)</code></pre>
     <div class="section-content">
       <div class="card">
         <h3>Powered Weapons</h3>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Rarity</th>
-            <th>Modifications</th>
-            <th>FE per Shot</th>
-            <th>Internal Buffer</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="badge bg-secondary">Uncommon</span></td>
-            <td>Any</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-rare">Rare</span></td>
-            <td>1-2 mods</td>
-            <td>100</td>
-            <td>10,000 (100 shots)</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-epic">Epic</span></td>
-            <td>3-4 mods</td>
-            <td>500</td>
-            <td>50,000 (100 shots)</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-legendary">Legendary</span></td>
-            <td>5+ mods</td>
-            <td>2000</td>
-            <td>200,000 (100 shots)</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-artifact">Artifact</span></td>
-            <td>Any</td>
-            <td>5000+</td>
-            <td>1,000,000 (200 shots)</td>
-          </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Rarity</th>
+              <th>Modifications</th>
+              <th>FE per Shot</th>
+              <th>Internal Buffer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><span class="badge bg-secondary">Uncommon</span></td>
+              <td>Any</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-rare">Rare</span></td>
+              <td>1-2 mods</td>
+              <td>100</td>
+              <td>10,000 (100 shots)</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-epic">Epic</span></td>
+              <td>3-4 mods</td>
+              <td>500</td>
+              <td>50,000 (100 shots)</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-legendary">Legendary</span></td>
+              <td>5+ mods</td>
+              <td>2000</td>
+              <td>200,000 (100 shots)</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-artifact">Artifact</span></td>
+              <td>Any</td>
+              <td>5000+</td>
+              <td>1,000,000 (200 shots)</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3>Modification Throughput Requirements</h3>
         <p><strong>Formula:</strong></p>
@@ -2332,87 +2349,91 @@ if (ratio >= 0.98) {
         </div>
 
         <h3>Risk by Success Chance</h3>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Success %</th>
-            <th>Explosion Radius</th>
-            <th>Damage</th>
-            <th>Item State</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="table-success">
-            <td>100%</td>
-            <td>No explosion</td>
-            <td>No damage</td>
-            <td><i class="fas fa-check text-success"></i> Success!</td>
-          </tr>
-          <tr>
-            <td>95-99%</td>
-            <td>3 blocks</td>
-            <td>10 HP</td>
-            <td>Always broken</td>
-          </tr>
-          <tr>
-            <td>70-94%</td>
-            <td>4 blocks</td>
-            <td>20 HP</td>
-            <td>Always broken</td>
-          </tr>
-          <tr>
-            <td>50-69%</td>
-            <td>5 blocks</td>
-            <td>30 HP</td>
-            <td>Always broken</td>
-          </tr>
-          <tr>
-            <td>30-49%</td>
-            <td>6 blocks</td>
-            <td>40 HP</td>
-            <td>Always broken</td>
-          </tr>
-          <tr class="table-danger">
-            <td>&lt;30%</td>
-            <td>8 blocks</td>
-            <td>50 HP</td>
-            <td>Always broken</td>
-          </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Success %</th>
+              <th>Explosion Radius</th>
+              <th>Damage</th>
+              <th>Item State</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-success">
+              <td>100%</td>
+              <td>No explosion</td>
+              <td>No damage</td>
+              <td><i class="fas fa-check text-success"></i> Success!</td>
+            </tr>
+            <tr>
+              <td>95-99%</td>
+              <td>3 blocks</td>
+              <td>10 HP</td>
+              <td>Always broken</td>
+            </tr>
+            <tr>
+              <td>70-94%</td>
+              <td>4 blocks</td>
+              <td>20 HP</td>
+              <td>Always broken</td>
+            </tr>
+            <tr>
+              <td>50-69%</td>
+              <td>5 blocks</td>
+              <td>30 HP</td>
+              <td>Always broken</td>
+            </tr>
+            <tr>
+              <td>30-49%</td>
+              <td>6 blocks</td>
+              <td>40 HP</td>
+              <td>Always broken</td>
+            </tr>
+            <tr class="table-danger">
+              <td>&lt;30%</td>
+              <td>8 blocks</td>
+              <td>50 HP</td>
+              <td>Always broken</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3>Modification Times</h3>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Rarity</th>
-            <th>Base Time</th>
-            <th>With Modification Halo Relic</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="badge badge-rare">Rare</span></td>
-            <td>2 minutes</td>
-            <td>48 seconds</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-epic">Epic</span></td>
-            <td>5 minutes</td>
-            <td>2 minutes</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-legendary">Legendary</span></td>
-            <td>10 minutes</td>
-            <td>10 minutes (no effect)</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-artifact">Artifacts</span></td>
-            <td>20 minutes</td>
-            <td>20 minutes (no effect)</td>
-          </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Rarity</th>
+              <th>Base Time</th>
+              <th>With Modification Halo Relic</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><span class="badge badge-rare">Rare</span></td>
+              <td>2 minutes</td>
+              <td>48 seconds</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-epic">Epic</span></td>
+              <td>5 minutes</td>
+              <td>2 minutes</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-legendary">Legendary</span></td>
+              <td>10 minutes</td>
+              <td>10 minutes (no effect)</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-artifact">Artifacts</span></td>
+              <td>20 minutes</td>
+              <td>20 minutes (no effect)</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3>Lua Safety Check Example</h3>
         <pre><code class="language-lua">-- Pre-modification safety check
@@ -3143,119 +3164,123 @@ Key Takeaways:
         </div>
 
         <h4>Advanced PSI API Reference</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Circuit Type</th>
-              <th>Constructor</th>
-              <th>Common Methods</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge badge-rare">Projectile</span></td>
-              <td><code>Projectile.new(name)</code></td>
-              <td>setSpeed(), setRange(), setGravity(), setHoming(), setSize()</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Instant</span></td>
-              <td><code>Instant.new(name)</code></td>
-              <td>None (uses effect chains only)</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Raycast</span></td>
-              <td><code>Raycast.new(name)</code></td>
-              <td>setRange(), setPiercing(), setParticle()</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Circuit Type</th>
+                <th>Constructor</th>
+                <th>Common Methods</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-rare">Projectile</span></td>
+                <td><code>Projectile.new(name)</code></td>
+                <td>setSpeed(), setRange(), setGravity(), setHoming(), setSize()</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Instant</span></td>
+                <td><code>Instant.new(name)</code></td>
+                <td>None (uses effect chains only)</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legendary">Raycast</span></td>
+                <td><code>Raycast.new(name)</code></td>
+                <td>setRange(), setPiercing(), setParticle()</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Effect Chain Method</th>
-              <th>Description</th>
-              <th>Parameters</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>effectChain()</code></td>
-              <td>Create new effect chain</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><code>:onImpact()</code></td>
-              <td>Trigger when projectile hits</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><code>:onCast()</code></td>
-              <td>Trigger when circuit is cast</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><code>:selectTarget()</code></td>
-              <td>Select hit entity</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><code>:selectCaster()</code></td>
-              <td>Select circuit caster</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><code>:selectNearbyEnemies(radius)</code></td>
-              <td>Select hostile entities</td>
-              <td>radius (blocks)</td>
-            </tr>
-            <tr>
-              <td><code>:selectNearbyAllies(radius)</code></td>
-              <td>Select friendly entities</td>
-              <td>radius (blocks)</td>
-            </tr>
-            <tr>
-              <td><code>:applyDamage(amount)</code></td>
-              <td>Deal damage</td>
-              <td>amount (hearts)</td>
-            </tr>
-            <tr>
-              <td><code>:healEntity(amount)</code></td>
-              <td>Restore health</td>
-              <td>amount (hearts)</td>
-            </tr>
-            <tr>
-              <td><code>:applyPotion(effect, duration, amplifier)</code></td>
-              <td>Apply potion effect</td>
-              <td>effect name, seconds, level</td>
-            </tr>
-            <tr>
-              <td><code>:applyKnockback(strength)</code></td>
-              <td>Push entity away</td>
-              <td>strength (0-10)</td>
-            </tr>
-            <tr>
-              <td><code>:createExplosion(radius)</code></td>
-              <td>Create explosion</td>
-              <td>radius (blocks)</td>
-            </tr>
-            <tr>
-              <td><code>:ifLessThan(value)</code></td>
-              <td>Conditional branch</td>
-              <td>threshold (0-1 for health)</td>
-            </tr>
-            <tr>
-              <td><code>:else()</code></td>
-              <td>Else branch</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><code>:endIf()</code></td>
-              <td>End conditional</td>
-              <td>None</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Effect Chain Method</th>
+                <th>Description</th>
+                <th>Parameters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>effectChain()</code></td>
+                <td>Create new effect chain</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td><code>:onImpact()</code></td>
+                <td>Trigger when projectile hits</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td><code>:onCast()</code></td>
+                <td>Trigger when circuit is cast</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td><code>:selectTarget()</code></td>
+                <td>Select hit entity</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td><code>:selectCaster()</code></td>
+                <td>Select circuit caster</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td><code>:selectNearbyEnemies(radius)</code></td>
+                <td>Select hostile entities</td>
+                <td>radius (blocks)</td>
+              </tr>
+              <tr>
+                <td><code>:selectNearbyAllies(radius)</code></td>
+                <td>Select friendly entities</td>
+                <td>radius (blocks)</td>
+              </tr>
+              <tr>
+                <td><code>:applyDamage(amount)</code></td>
+                <td>Deal damage</td>
+                <td>amount (hearts)</td>
+              </tr>
+              <tr>
+                <td><code>:healEntity(amount)</code></td>
+                <td>Restore health</td>
+                <td>amount (hearts)</td>
+              </tr>
+              <tr>
+                <td><code>:applyPotion(effect, duration, amplifier)</code></td>
+                <td>Apply potion effect</td>
+                <td>effect name, seconds, level</td>
+              </tr>
+              <tr>
+                <td><code>:applyKnockback(strength)</code></td>
+                <td>Push entity away</td>
+                <td>strength (0-10)</td>
+              </tr>
+              <tr>
+                <td><code>:createExplosion(radius)</code></td>
+                <td>Create explosion</td>
+                <td>radius (blocks)</td>
+              </tr>
+              <tr>
+                <td><code>:ifLessThan(value)</code></td>
+                <td>Conditional branch</td>
+                <td>threshold (0-1 for health)</td>
+              </tr>
+              <tr>
+                <td><code>:else()</code></td>
+                <td>Else branch</td>
+                <td>None</td>
+              </tr>
+              <tr>
+                <td><code>:endIf()</code></td>
+                <td>End conditional</td>
+                <td>None</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -3271,42 +3296,44 @@ Key Takeaways:
         <p>Random stat bonuses/penalties applied to items during compile. Can be rerolled using resources.</p>
 
         <h4>Affix Tiers</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Tier</th>
-              <th>Chance</th>
-              <th>Effect Range</th>
-              <th>Prefix/Suffix</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge bg-secondary">Minor</span></td>
-              <td>60%</td>
-              <td>±5%</td>
-              <td>"Worn" / "of the Recruit"</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-rare">Moderate</span></td>
-              <td>30%</td>
-              <td>±15%</td>
-              <td>"Reinforced" / "of the Veteran"</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-epic">Major</span></td>
-              <td>8%</td>
-              <td>±30%</td>
-              <td>"Masterwork" / "of the Champion"</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-legendary">Perfect</span></td>
-              <td>2%</td>
-              <td>+50%</td>
-              <td>"Godly" / "of Perfection"</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Chance</th>
+                <th>Effect Range</th>
+                <th>Prefix/Suffix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge bg-secondary">Minor</span></td>
+                <td>60%</td>
+                <td>±5%</td>
+                <td>"Worn" / "of the Recruit"</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-rare">Moderate</span></td>
+                <td>30%</td>
+                <td>±15%</td>
+                <td>"Reinforced" / "of the Veteran"</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-epic">Major</span></td>
+                <td>8%</td>
+                <td>±30%</td>
+                <td>"Masterwork" / "of the Champion"</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-legendary">Perfect</span></td>
+                <td>2%</td>
+                <td>+50%</td>
+                <td>"Godly" / "of Perfection"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h4>Affix Types</h4>
         <ul>
@@ -3894,6 +3921,7 @@ creativeItemStatReduction = 0.5</code></pre>
 
   function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('show');
+    document.getElementById('mobileToggle').classList.toggle('active');
   }
 
   // Initialize sections
@@ -3923,7 +3951,6 @@ creativeItemStatReduction = 0.5</code></pre>
       });
     });
 
-    createModGrid();
     createFlowDiagram();
 
     // Delay chart creation to ensure canvas elements are fully rendered
@@ -3994,112 +4021,146 @@ creativeItemStatReduction = 0.5</code></pre>
     }
   }
 
-  // Create Joint.js flow diagram
+  // Create module flow diagram with rounded bubbles
   function createFlowDiagram() {
-    const namespace = joint.shapes;
-    const graph = new joint.dia.Graph({}, { cellNamespace: namespace });
+    const container = document.getElementById('flowDiagram');
+    container.innerHTML = `
+      <div class="flow-chart">
+        <!-- Step 1 -->
+        <div class="flow-step">
+          <div class="flow-bubble" style="background: linear-gradient(135deg, #10b981, #059669);">
+            <div class="flow-icon">📦</div>
+            <div class="flow-title">1. Install Modules</div>
+            <div class="flow-desc">At workbench: Install modules from inventory into device module slots</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+        </div>
 
-    const paper = new joint.dia.Paper({
-      el: document.getElementById('flowDiagram'),
-      model: graph,
-      width: '100%',
-      height: 400,
-      gridSize: 10,
-      background: { color: 'rgba(30, 41, 59, 0.5)' },
-      cellViewNamespace: namespace
-    });
+        <!-- Step 2 -->
+        <div class="flow-step">
+          <div class="flow-bubble" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+            <div class="flow-icon">💻</div>
+            <div class="flow-title">2. Write Lua Code</div>
+            <div class="flow-desc">Code circuit behavior using installed modules (baseVal(), effects, etc.)</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+        </div>
 
-    const projectile = new joint.shapes.standard.Rectangle({
-      position: { x: 50, y: 50 },
-      size: { width: 120, height: 60 },
-      attrs: {
-        body: { fill: '#06b6d4', stroke: '#0e7490', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Projectile:\nBullet', fill: '#ffffff', fontSize: 12 }
-      }
-    });
+        <!-- Step 3 -->
+        <div class="flow-step">
+          <div class="flow-bubble" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+            <div class="flow-icon">⚙️</div>
+            <div class="flow-title">3. Compile to Cartridge</div>
+            <div class="flow-desc">Modules transfer from device to cartridge, binding to circuit permanently</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+        </div>
 
-    const baseX = new joint.shapes.standard.Rectangle({
-      position: { x: 50, y: 180 },
-      size: { width: 100, height: 50 },
-      attrs: {
-        body: { fill: '#10b981', stroke: '#059669', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Base: 2-10', fill: '#ffffff', fontSize: 11 }
-      }
-    });
+        <!-- Step 4 -->
+        <div class="flow-step">
+          <div class="flow-bubble" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+            <div class="flow-icon">🚀</div>
+            <div class="flow-title">4. Execute Circuit</div>
+            <div class="flow-desc">Use compiled cartridge via keybind or direct call</div>
+          </div>
+        </div>
 
-    const varX = new joint.shapes.standard.Rectangle({
-      position: { x: 200, y: 180 },
-      size: { width: 80, height: 50 },
-      attrs: {
-        body: { fill: '#3b82f6', stroke: '#1d4ed8', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Var: x', fill: '#ffffff', fontSize: 11 }
-      }
-    });
+        <!-- Optional Step 5 -->
+        <div class="flow-step" style="margin-top: 2rem; opacity: 0.7;">
+          <div class="flow-arrow" style="transform: rotate(180deg);">↑</div>
+          <div class="flow-bubble" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+            <div class="flow-icon">♻️</div>
+            <div class="flow-title">5. Decompile (Optional)</div>
+            <div class="flow-desc">Recover modules from cartridge (destroys cartridge)</div>
+          </div>
+        </div>
+      </div>
 
-    const baseY = new joint.shapes.standard.Rectangle({
-      position: { x: 50, y: 260 },
-      size: { width: 100, height: 50 },
-      attrs: {
-        body: { fill: '#10b981', stroke: '#059669', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Base: 2-5', fill: '#ffffff', fontSize: 11 }
-      }
-    });
+      <style>
+        .flow-chart {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 2rem 1rem;
+          background: rgba(30, 41, 59, 0.5);
+          border-radius: 12px;
+        }
 
-    const varY = new joint.shapes.standard.Rectangle({
-      position: { x: 200, y: 260 },
-      size: { width: 80, height: 50 },
-      attrs: {
-        body: { fill: '#3b82f6', stroke: '#1d4ed8', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Var: y', fill: '#ffffff', fontSize: 11 }
-      }
-    });
+        .flow-step {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          max-width: 500px;
+        }
 
-    const junction = new joint.shapes.standard.Circle({
-      position: { x: 340, y: 210 },
-      size: { width: 60, height: 60 },
-      attrs: {
-        body: { fill: '#64748b', stroke: '#475569', strokeWidth: 2 },
-        label: { text: 'Junction', fill: '#ffffff', fontSize: 10 }
-      }
-    });
+        .flow-bubble {
+          width: 100%;
+          padding: 1.5rem;
+          border-radius: 30px;
+          color: white;
+          text-align: center;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    const formula = new joint.shapes.standard.Rectangle({
-      position: { x: 450, y: 210 },
-      size: { width: 100, height: 60 },
-      attrs: {
-        body: { fill: '#ef4444', stroke: '#dc2626', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Formula:\nx^y', fill: '#ffffff', fontSize: 12 }
-      }
-    });
+        .flow-bubble:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
 
-    const damage = new joint.shapes.standard.Rectangle({
-      position: { x: 600, y: 50 },
-      size: { width: 100, height: 60 },
-      attrs: {
-        body: { fill: '#f59e0b', stroke: '#d97706', strokeWidth: 2, rx: 8, ry: 8 },
-        label: { text: 'Damage\nCard', fill: '#ffffff', fontSize: 12 }
-      }
-    });
+        .flow-icon {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+        }
 
-    graph.addCells([projectile, baseX, varX, baseY, varY, junction, formula, damage]);
+        .flow-title {
+          font-size: 1.2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+        }
 
-    const linkStyle = {
-      line: {
-        stroke: '#10b981',
-        strokeWidth: 3,
-        targetMarker: { type: 'path', d: 'M 10 -5 0 0 10 5 z', fill: '#10b981' }
-      }
-    };
+        .flow-desc {
+          font-size: 0.9rem;
+          opacity: 0.95;
+          line-height: 1.4;
+        }
 
-    graph.addCells([
-      new joint.shapes.standard.Link({ source: { id: projectile.id }, target: { id: damage.id }, attrs: linkStyle }),
-      new joint.shapes.standard.Link({ source: { id: baseX.id }, target: { id: varX.id }, attrs: linkStyle }),
-      new joint.shapes.standard.Link({ source: { id: baseY.id }, target: { id: varY.id }, attrs: linkStyle }),
-      new joint.shapes.standard.Link({ source: { id: varX.id }, target: { id: junction.id }, attrs: linkStyle }),
-      new joint.shapes.standard.Link({ source: { id: varY.id }, target: { id: junction.id }, attrs: linkStyle }),
-      new joint.shapes.standard.Link({ source: { id: junction.id }, target: { id: formula.id }, attrs: linkStyle }),
-      new joint.shapes.standard.Link({ source: { id: formula.id }, target: { id: damage.id }, attrs: linkStyle })
-    ]);
+        .flow-arrow {
+          font-size: 3rem;
+          color: var(--accent-cyan);
+          margin: 0.5rem 0;
+          animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+          .flow-bubble {
+            padding: 1rem;
+          }
+
+          .flow-icon {
+            font-size: 2rem;
+          }
+
+          .flow-title {
+            font-size: 1rem;
+          }
+
+          .flow-desc {
+            font-size: 0.85rem;
+          }
+
+          .flow-arrow {
+            font-size: 2rem;
+          }
+        }
+      </style>
+    `;
   }
 
   // Create charts

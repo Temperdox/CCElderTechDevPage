@@ -361,6 +361,14 @@
     height: 50px;
   }
 
+  .sprite-item {
+    transform: scale(1.26171875) translate(-2px, -3px);
+  }
+
+  .recipe-output .sprite-item {
+    transform: scale(1.5140625) translate(-2px, -3px);
+  }
+
   .recipe-tabs {
     gap: 0.25rem;
   }
